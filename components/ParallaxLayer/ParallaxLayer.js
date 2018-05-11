@@ -4,21 +4,28 @@ import React, { Component } from 'react';
 const ParallaxLayer = (props) => {
 
 	let topPosition;
-	// This modifier represents scale from 0 (fixed position) - 1 (normal scroll flow)
 	let modifier = props.modifier;
-	let screeOffset = props.viewportTopOffset;
-	let newPosition = (props.initialTopPosition + (screeOffset * modifier));
+	let screenOffset = props.viewportTopOffset;
+	let newPosition = (props.initialTopPosition + (screenOffset * modifier));
 	topPosition = {
 		top: `${Math.round(newPosition)}px`
 	};
 
-	return(
-		<div
-			id={"foreground"}
-			className={"parallax-element"}
-			style={topPosition}
-		>
+	let style = {
+		position: "absolute",
+		width: "100%",
+		// Below are placeholders
+		height: "100%",
+		background: "no-repeat top/160% url(" + props.img + ")"
+	};
 
+	let imgStyle = {
+		// width: "100%"
+	};
+
+	return(
+		<div style={{...style,...topPosition}} >
+			{/*<img src={props.img} alt="" style={imgStyle}/>*/}
 		</div>
 	)
 };

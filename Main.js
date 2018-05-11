@@ -4,13 +4,20 @@ import "./global.css";
 import { TweenLite } from 'gsap';
 import ParallaxLayer from "./components/ParallaxLayer/ParallaxLayer"
 
+// import parallax image
+import imageParallaxBackground from "./static/background.png";
+import imageParallaxSoncek from "./static/soncek.png";
+import imageParallaxFarmidlands from "./static/farmidlandsparalax.png";
+import imageParallaxMidlands from "./static/midlandsparalax.png";
+import imageParallaxForeground from "./static/foregroundparalax.png";
+
 export default class Main extends Component {
 
 	constructor() {
 		super();
 		super();
 		this.state = {
-			positionFromTop: 300
+			positionFromTop: 0
 		};
 
 		this.lastWheelEventTime = 0;
@@ -27,96 +34,54 @@ export default class Main extends Component {
 
 	/* Triggered when component loads */
 	componentDidMount() {
-		// this.updatePosition();
-		// window.addEventListener("resize", this.updatePosition.bind(this));
 		window.addEventListener("scroll", this.updatePosition.bind(this));
 	}
 
 	componentWillUnmount() {
-		// window.removeEventListener("resize", this.updatePosition.bind(this));
 		window.removeEventListener("scroll", this.updatePosition.bind(this));
 	}
 
-	updatePosition (event) {
+	updatePosition () {
 		let offset = document.documentElement.scrollTop;
-
-		// let currentPosition = this.state.positionFromTop;
-
-		// let newPosition = Math.round( offset - 1.2 );
-		// let newPosition = Math.round( (offset + 300) * 0.9 );
-
 		this.setState({ positionFromTop: offset });
-
-		// console.log(this.midlands.current.style.top);
-
-		// this.midlands.current.style.top = "100px";
-
-		// .style.background = "100px"
-		// console.log(this.state.positionFromTop);
-		// let newPosition = Math.round( (this.state.positionFromTop + 300) * 0.7 );
-
-	}
-
-	handleMouseWheel(event) {
-		if (this.lastWheelEventTime >= (Date.now() - this.delay)) return;
-		this.lastWheelEventTime = Date.now();
-
-		console.log(event.deltaY);
-
-		let scrollDirection = (event.deltaY > 0) ? "up" : "down";
-		// let containerHeight = window.getComputedStyle(event.currentTarget, null).height;
-		let layers = event.currentTarget.childNodes;
-		layers.forEach( (layer) => {
-			// Don't process/animate background element
-			if ( layer.getAttribute('id') === "background" ) return;
-
-			let currentLayerHeight = window.getComputedStyle(layer, null).height;
-			let newLayerHeight;
-
-			if (scrollDirection === "up" && this.position === "up") {
-				console.log(this.position);
-				newLayerHeight = parseInt(currentLayerHeight) + parseInt(currentLayerHeight)/100*40;
-				TweenLite.to( layer, 1, {height: newLayerHeight} );
-			}
-
-			if (scrollDirection === "down" && this.position === "down") {
-				newLayerHeight = parseInt(currentLayerHeight) - parseInt(currentLayerHeight)/100*40;
-				TweenLite.to( layer, 1, {height: newLayerHeight } );
-			}
-		});
-
-		this.position = scrollDirection === "up" ? "down" : "up";
-		// console.log(this.position);
 	}
 
 	render() {
-		let parallaxAnimation;
-		if (this.midlands.current) {
-			// This modifier represents scale from 0 (fixed position) - 1 (normal scroll flow)
-			let modifier = 0.5;
-			let screeOffset = this.state.positionFromTop;
-			let newPosition = (300 + (screeOffset * modifier));
-			parallaxAnimation = {
-				top: `${Math.round(newPosition)}px`
-			};
-		}
 
 		return (
 			<div id={"container"}>
-				<div id={"background"} className={"parallax-element"}>
-					background
-				</div>
-				<div id={"midlands"} className={"parallax-element"} style={parallaxAnimation} ref={this.midlands}>
-					midlands
-				</div>
-				<div id={"foreground"} className={"parallax-element"}>
-					foreground
-				</div>
-				{/*<ParallaxLayer*/}
-					{/*initialTopPosition={300}*/}
-					{/*modifier={0.5}*/}
-					{/*viewportTopOffset={this.state.positionFromTop}*/}
-				{/*/>*/}
+				<ParallaxLayer
+					initialTopPosition={0}
+					modifier={1}
+					viewportTopOffset={this.state.positionFromTop}
+					img={imageParallaxBackground}
+				/>
+				<ParallaxLayer
+					initialTopPosition={100}
+					modifier={0.8}
+					viewportTopOffset={this.state.positionFromTop}
+					img={imageParallaxSoncek}
+				/>
+				<ParallaxLayer
+					initialTopPosition={100}
+					modifier={0.6}
+					viewportTopOffset={this.state.positionFromTop}
+					img={imageParallaxFarmidlands}
+				/>
+				<ParallaxLayer
+					initialTopPosition={100}
+					modifier={0.4}
+					viewportTopOffset={this.state.positionFromTop}
+					img={imageParallaxMidlands}
+				/>
+				<ParallaxLayer
+					initialTopPosition={100}
+					modifier={0.1}
+					viewportTopOffset={this.state.positionFromTop}
+					img={imageParallaxForeground}
+				/>
+				<div id={"main-area"} className={"parallax-element"}></div>
+
 			</div>
 		);
 	}
