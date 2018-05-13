@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import "./parallax.css";
+import "./parallax.scss";
 import ParallaxLayer from "./ParallaxLayer/ParallaxLayer"
 
 // import parallax images
@@ -9,6 +9,7 @@ import imageParallaxSoncek from "static/soncek.png";
 import imageParallaxFarmidlands from "static/farmidlandsparalax.png";
 import imageParallaxMidlands from "static/midlandsparalax.png";
 import imageParallaxForeground from "static/foregroundparalax.png";
+import TweenMax from "gsap";
 
 export default class ParallaxElement extends Component {
 
@@ -17,6 +18,8 @@ export default class ParallaxElement extends Component {
 		this.state = {
 			positionFromTop: 0
 		};
+
+		this.bgLayer = React.createRef();
 	}
 
 	/* Triggered before component loads */
@@ -34,16 +37,25 @@ export default class ParallaxElement extends Component {
 	updatePosition = () => {
 		let offset = document.documentElement.scrollTop;
 		this.setState({ positionFromTop: offset });
+		// this.animateBackgroundColor(this.bgLayer);
+	};
+
+	animateBackgroundColor = () => {
+		if (this.state.positionFromTop > 1000) `rgb(0, 0, 0)`;
+		let blueValue = Math.round(255 - (this.state.positionFromTop * 0.25));
+		return `rgb(0, 0, ${blueValue})`;
 	};
 
 	render() {
 
+		let color = this.animateBackgroundColor();
+
 		let layers = [
-			{initialPosition: 0, modifier: 0.9, viewportTopOffset: this.state.positionFromTop, img: imageParallaxBackground},
-			{initialPosition: 0, modifier: 0.9, viewportTopOffset: this.state.positionFromTop, img: imageParallaxSoncek},
-			{initialPosition: 0, modifier: 0.5, viewportTopOffset: this.state.positionFromTop, img: imageParallaxFarmidlands},
-			{initialPosition: 0, modifier: 0.3, viewportTopOffset: this.state.positionFromTop, img: imageParallaxMidlands},
-			{initialPosition: 0, modifier: 0.1, viewportTopOffset: this.state.positionFromTop, img: imageParallaxForeground}
+			{name: "background", initialPosition: 0, modifier: 1.0, viewportTopOffset: this.state.positionFromTop, img: "", color: color},
+			{name: "soncek", initialPosition: 0, modifier: 1.2, viewportTopOffset: this.state.positionFromTop, img: imageParallaxSoncek},
+			{name: "farmidlands", initialPosition: 0, modifier: 0.5, viewportTopOffset: this.state.positionFromTop, img: imageParallaxFarmidlands},
+			{name: "midlands", initialPosition: 0, modifier: 0.3, viewportTopOffset: this.state.positionFromTop, img: imageParallaxMidlands},
+			{name: "foreground", initialPosition: 0, modifier: 0.1, viewportTopOffset: this.state.positionFromTop, img: imageParallaxForeground}
 		];
 
 		return (

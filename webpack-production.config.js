@@ -12,6 +12,18 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 // 	loader: WebpackStripLoader.loader('console.log')
 // };
 
+// TODO: In production, certain assets should be extracted using plugins for better performance
+let sassLoader = {
+	test: /\.scss$/,
+	use: [{
+		loader: "style-loader"
+	}, {
+		loader: "css-loader"
+	}, {
+		loader: "sass-loader"
+	}]
+};
+
 let cssLoader = {
 	test: /\.css$/,
 	use: [{
@@ -22,6 +34,7 @@ let cssLoader = {
 };
 
 baseConfig.module.rules.push(cssLoader);
+baseConfig.module.rules.push(sassLoader);
 
 baseConfig.plugins.push(
 	new webpack.DefinePlugin({
