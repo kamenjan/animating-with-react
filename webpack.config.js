@@ -62,7 +62,7 @@ module.exports = {
 	resolve: {
 		modules: [
 			/* Path resolvers for application imports using absolute path */
-			path.resolve('./src'),
+			path.resolve('./'),
 			path.resolve('./node_modules')
 		]
 	}

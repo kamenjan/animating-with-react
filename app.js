@@ -1,5 +1,4 @@
 console.log(`Running application in ${ENV} mode`);
-
 if (ENV === "production") {}
 
 import React from "react";
