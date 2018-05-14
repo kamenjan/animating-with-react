@@ -6,8 +6,17 @@ html, body {
 	width: 100%;
 }
 
+
+/* Keyframe for animating svg effect */
+@keyframes dash {
+	to {
+		stroke-dashoffset: 0;
+	}
+}
+
+
 /* This belongs to respective container */
 .generic-container {
-	background-color: #303A3A;
+	//background-color: #303A3A;
 	height: 9000px;
 }
