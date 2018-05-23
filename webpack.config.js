@@ -1,6 +1,8 @@
 const path = require("path");
+const webpack = require('webpack');
 
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
 	entry: ["babel-polyfill", "./app.js"],
@@ -57,6 +59,13 @@ module.exports = {
 		new HtmlWebPackPlugin({
 			template: "./index.html",
 			filename: "./index.html"
+		}),
+		new CopyWebpackPlugin(
+			[ { from: 'static/images', to: './images/' } ], {}
+		),
+		new webpack.DefinePlugin({
+			//Set true for the full bodymovin.min and false for bodymovin_light.min
+			BODYMOVIN_EXPRESSION_SUPPORT: true
 		})
 	],
 	resolve: {

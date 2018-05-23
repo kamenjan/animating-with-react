@@ -3,21 +3,18 @@ import React, { Component } from "react";
 import { TimelineLite } from 'gsap';
 
 import "./global.scss";
-import SvgImage from "./test.svg";
-
 
 import ParallaxElement from "./components/ParallaxElement/ParallaxElement";
+import GreensockAnimation from "./containers/GreensockAnimation/GreensockAnimation";
+import BodymovinAnimation from "./containers/BodymovinAnimation/BodymovinAnimation";
 
 export default class Main extends Component {
 
 	constructor() {
 		super();
 		this.state = {
-			svgAnimationStyle: {}
-		};
-
-		this.mainReference = React.createRef();
-		this.tl = new TimelineLite();
+			fromTop: 0
+		}
 	}
 
 	/* Triggered before component loads */
@@ -25,42 +22,34 @@ export default class Main extends Component {
 
 	/* Triggered when component loads */
 	componentDidMount() {
-		window.addEventListener("scroll", this.updatePosition);
-
-		this.path = this.mainReference.current.querySelector("path");
-		this.tl.to(this.path, 10, {strokeDashoffset:0});
-		this.tl.pause();
-
-		let style = {
-			strokeDasharray: 523,
-			strokeDashoffset: 523
-		};
-
-		this.setState({
-			svgAnimationStyle: style,
-			positionFromTop: 0
-		});
+		window.addEventListener("scroll", this.updateOnScroll);
 	}
 
 	componentWillUnmount() {
-		window.removeEventListener("scroll", this.updatePosition);
+		window.removeEventListener("scroll", this.updateOnScroll);
 	}
 
-	updatePosition = () => {
-		let offset = document.documentElement.scrollTop;
-		this.setState({ positionFromTop: offset });
-		if (offset > 535) return;
-		let position = offset / 535;
-		this.tl.progress(position);
+	updateOnScroll = () => {
+		this.setState({fromTop: document.documentElement.scrollTop});
 	};
 
 	render() {
+
 		return (
 			<div id={"app-container"} ref={this.mainReference}>
-				{/*<ParallaxElement height={1038} />*/}
+
+				{/*Our custom parallax scroll element*/}
+				<ParallaxElement height={1038} fromTop={this.state.fromTop} />
+
+				{/*Our custom gsap animation element*/}
+				<GreensockAnimation fromTop={this.state.fromTop}/>
+
+				{/*Our custom gsap animation element*/}
+				<BodymovinAnimation fromTop={this.state.fromTop}/>
+
 				{/*This should be a container view. Using one container for SPA and multiple with react router for structured application*/}
 				<div className={"generic-container"}>
-					<SvgImage id={"test-svg"} style={this.state.svgAnimationStyle}/>
+
 				</div>
 			</div>
 		);

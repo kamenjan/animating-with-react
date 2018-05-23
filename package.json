@@ -1,12 +1,12 @@
 {
-  "name": "react_clean_boilerplate",
+  "name": "react_basic_boilerplate",
   "version": "0.0.1",
   "description": "react playground and learning boilerplate",
   "main": "app.js",
   "scripts": {
+    "start": "npm run build && npm run serve",
     "build": "webpack --config webpack-production.config.js",
-    "start": "webpack-dev-server --config webpack-development.config.js --open",
-    "serve": "NODE_ENV=production node ./dist/js/app.js",
+    "serve": "webpack-dev-server --config webpack-development.config.js --open",
     "clean": "rm -rf ./node_modules"
   },
   "repository": {
@@ -16,7 +16,7 @@
   "keywords": [
     "react"
   ],
-  "author": "Rok Arih",
+  "author": "Pouncing Lynx Production",
   "license": "MIT",
   "bugs": {
     "url": ""
@@ -48,9 +48,7 @@
     "gsap": "1.20.4",
     "localforage": "1.6.0",
     "react": "^16.2.0",
-    "react-bootstrap-table": "4.3.1",
-    "react-bootstrap-table-next": "0.1.5",
-    "react-bootstrap-table2-filter": "0.1.5",
+    "react-bodymovin": "1.1.2",
     "react-dom": "^16.2.0",
     "react-router": "4.2.0"
   }

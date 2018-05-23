@@ -1,22 +1,27 @@
-body {
-	margin: 0;
+html {
+  //width: 100%;
+
+  body {
+    //width: 100%;
+    margin: 0;
+  }
+
+  /* START: Code for hiding browser native scrollbar  */
+  //overflow: scroll;
+  //overflow-x: hidden;
+  //::-webkit-scrollbar {
+  //  width: 0; /* remove scrollbar space */
+  //  background: transparent; /* optional: just make scrollbar invisible */
+  //}
+  ///* optional: show position indicator in red */
+  //::-webkit-scrollbar-thumb {
+  //  background: #FF0000;
+  //}
+  /* END: Code for hiding browser native scrollbar  */
+
 }
 
-html, body {
-	width: 100%;
-}
-
-
-/* Keyframe for animating svg effect */
-@keyframes dash {
-	to {
-		stroke-dashoffset: 0;
-	}
-}
-
-
-/* This belongs to respective container */
+/* This belongs to respective container when implemented */
 .generic-container {
-	//background-color: #303A3A;
-	height: 9000px;
+  height: 9000px;
 }
