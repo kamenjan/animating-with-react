@@ -48,6 +48,7 @@
     "gsap": "1.20.4",
     "localforage": "1.6.0",
     "react": "^16.2.0",
+    "react-lottie": "1.1.0",
     "react-bodymovin": "1.1.2",
     "react-dom": "^16.2.0",
     "react-router": "4.2.0"
