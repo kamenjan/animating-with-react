@@ -62,11 +62,7 @@ module.exports = {
 		}),
 		new CopyWebpackPlugin(
 			[ { from: 'static/images', to: './images/' } ], {}
-		),
-		new webpack.DefinePlugin({
-			//Set true for the full bodymovin.min and false for bodymovin_light.min
-			BODYMOVIN_EXPRESSION_SUPPORT: true
-		})
+		)
 	],
 	resolve: {
 		modules: [

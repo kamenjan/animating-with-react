@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 
-
 import Lottie from 'react-lottie';
 // import ReactBodymovin from "react-bodymovin";
 
 import * as animationData from './david.json';
 // import animationData from "./david.json";
-
 
 import "./bodymovinAnimation.scss";
 
@@ -23,7 +21,9 @@ export default class BodymovinAnimation extends Component {
 
 	/* Triggered when component loads */
 	componentDidMount() {
-		/* Set BodyMovins SVG container as a class field so we can manipulate its style (this should be fixed in react-lotti soon by adding style props) */
+		/* HACK: Set BodyMovins SVG container as a Component's class field so we can manipulate its style when
+		and if needed. This should be fixed in react-lotti soon by adding style props to main component.
+		See https://github.com/chenqingspring/react-lottie/pull/33 for more info */
 		this.container = document.getElementById("bodymovin-container").querySelector("div");
 		this.container.style.margin = "0 0 0 -20%";
 	}
@@ -31,10 +31,15 @@ export default class BodymovinAnimation extends Component {
 	componentWillUnmount() {}
 
 	componentWillUpdate () {
+
+		/* TODO: There is a problem with BodyMovin animation controlls */
+		/* Reach out to react-lottie dev team on github and ask for help */
+		/* https://github.com/chenqingspring/react-lottie  */
+		// this.ref.current.anim.start();
+
 		let offset = this.props.fromTop;
 		if (offset > 450 && offset < 1600 ) {
 			let leftMargin = (offset-450)/9.56 - 20;
-			console.log(leftMargin);
 			this.container.style.margin = `0 0 0 ${leftMargin}%`;
 		}
 	}
@@ -42,8 +47,9 @@ export default class BodymovinAnimation extends Component {
 	render() {
 		const bodymovinOptions = {
 			loop: true,
-			autoplay: false,
+			autoplay: true,
 			prerender: false,
+			renderer: "svg",
 			animationData: animationData
 		};
 
@@ -53,6 +59,7 @@ export default class BodymovinAnimation extends Component {
 					options={bodymovinOptions}
 					height={400}
 					width={400}
+					isStopped={false}
 					ref={this.ref} />
 			</div>
 		);

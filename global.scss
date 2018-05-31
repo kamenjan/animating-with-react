@@ -1,8 +1,5 @@
 html {
-  //width: 100%;
-
   body {
-    //width: 100%;
     margin: 0;
   }
 
@@ -24,4 +21,7 @@ html {
 /* This belongs to respective container when implemented */
 .generic-container {
   height: 9000px;
+  background-color: green;
+  position: relative;
+  z-index: 98;
 }

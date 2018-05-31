@@ -30,7 +30,8 @@ export default class Main extends Component {
 	}
 
 	updateOnScroll = () => {
-		this.setState({fromTop: document.documentElement.scrollTop});
+		const documentElement = document.scrollingElement || document.documentElement;
+		this.setState({fromTop: documentElement.scrollTop});
 	};
 
 	render() {
@@ -41,14 +42,14 @@ export default class Main extends Component {
 				{/*Our custom parallax scroll element*/}
 				<ParallaxElement height={1038} fromTop={this.state.fromTop} />
 
-				{/*Our custom gsap animation element*/}
-				<GreensockAnimation fromTop={this.state.fromTop}/>
-
-				{/*Our custom gsap animation element*/}
-				<BodymovinAnimation fromTop={this.state.fromTop}/>
-
 				{/*This should be a container view. Using one container for SPA and multiple with react router for structured application*/}
 				<div className={"generic-container"}>
+
+					{/*Our custom gsap animation element*/}
+					<GreensockAnimation fromTop={this.state.fromTop}/>
+
+					{/*Our custom gsap animation element*/}
+					<BodymovinAnimation fromTop={this.state.fromTop}/>
 
 				</div>
 			</div>

@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
+import "./parallaxLayer.scss";
 
 const ParallaxLayer = ({name, initialPosition, viewportTopOffset, modifier, img, color}) => {
 
-	let newTopPosition = { marginTop: `${Math.round(initialPosition + (viewportTopOffset * modifier))}px` };
+	let transform = { transform: `translate3d(0px, ${Math.round(initialPosition + (viewportTopOffset * modifier))}px, 0px)`};
+
 	let style = {
-		position: "absolute",
-		width: "100%",
-		height: "100%",
 		background: `no-repeat top center / 3633px 100% url("${img}")`,
 		backgroundColor: color
 	};
 
 	return(
-		<div className={name} style={{...style,...newTopPosition}} ></div>
+		<div className={`${name} parallax-layer`} style={{...style,...transform}} ></div>
 	)
 };
 

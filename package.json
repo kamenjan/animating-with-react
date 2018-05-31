@@ -1,12 +1,13 @@
 {
-  "name": "react_basic_boilerplate",
+  "name": "animating_with_react",
   "version": "0.0.1",
-  "description": "react playground and learning boilerplate",
+  "description": "solving animation challanges in react using different approaches",
   "main": "app.js",
   "scripts": {
-    "start": "npm run build && npm run serve",
+    "start": "npm run serve-dev",
     "build": "webpack --config webpack-production.config.js",
-    "serve": "webpack-dev-server --config webpack-development.config.js --open",
+    "serve-dev": "webpack-dev-server --config webpack-development.config.js --open",
+    "serve-prod": "serve dist/",
     "clean": "rm -rf ./node_modules"
   },
   "repository": {
@@ -17,7 +18,7 @@
     "react"
   ],
   "author": "Pouncing Lynx Production",
-  "license": "MIT",
+  "license": "WTFPL",
   "bugs": {
     "url": ""
   },
@@ -46,7 +47,6 @@
   },
   "dependencies": {
     "gsap": "1.20.4",
-    "localforage": "1.6.0",
     "react": "^16.2.0",
     "react-lottie": "1.1.0",
     "react-bodymovin": "1.1.2",
