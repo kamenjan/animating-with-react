@@ -5,18 +5,16 @@ let baseConfig = require('./webpack.config.js');
 
 baseConfig.devtool = 'source-map';
 
-let lessLoader = {
-	test: /\.less$/,
+let sassLoader = {
+	test: /\.scss$/,
 	use: [{
-		loader: "style-loader" // creates style nodes from JS strings
+		loader: "style-loader"
 	}, {
-		loader: "css-loader", // translates CSS into CommonJS
-		options: {
+		loader: "css-loader", options: {
 			sourceMap: true
 		}
 	}, {
-		loader: "less-loader", // compiles Less to CSS
-		options: {
+		loader: "sass-loader", options: {
 			sourceMap: true
 		}
 	}]
@@ -35,7 +33,7 @@ let cssLoader = {
 };
 
 baseConfig.module.rules.push(cssLoader);
-baseConfig.module.rules.push(lessLoader);
+baseConfig.module.rules.push(sassLoader);
 
 baseConfig.plugins.push(
 	new webpack.DefinePlugin({

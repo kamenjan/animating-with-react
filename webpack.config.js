@@ -1,6 +1,8 @@
 const path = require("path");
+const webpack = require('webpack');
 
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
 	entry: ["babel-polyfill", "./app.js"],
@@ -57,12 +59,15 @@ module.exports = {
 		new HtmlWebPackPlugin({
 			template: "./index.html",
 			filename: "./index.html"
-		})
+		}),
+		new CopyWebpackPlugin(
+			[ { from: 'static/images', to: './images/' } ], {}
+		)
 	],
 	resolve: {
 		modules: [
 			/* Path resolvers for application imports using absolute path */
-			path.resolve('./src'),
+			path.resolve('./'),
 			path.resolve('./node_modules')
 		]
 	}

@@ -1,0 +1,27 @@
+html {
+  body {
+    margin: 0;
+  }
+
+  /* START: Code for hiding browser native scrollbar  */
+  //overflow: scroll;
+  //overflow-x: hidden;
+  //::-webkit-scrollbar {
+  //  width: 0; /* remove scrollbar space */
+  //  background: transparent; /* optional: just make scrollbar invisible */
+  //}
+  ///* optional: show position indicator in red */
+  //::-webkit-scrollbar-thumb {
+  //  background: #FF0000;
+  //}
+  /* END: Code for hiding browser native scrollbar  */
+
+}
+
+/* This belongs to respective container when implemented */
+.generic-container {
+  height: 9000px;
+  background-color: green;
+  position: relative;
+  z-index: 98;
+}
