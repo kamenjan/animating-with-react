@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 
 import Lottie from 'react-lottie';
-// import ReactBodymovin from "react-bodymovin";
 
 import * as animationData from './david.json';
 // import animationData from "./david.json";
