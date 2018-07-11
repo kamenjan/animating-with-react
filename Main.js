@@ -4,6 +4,9 @@ import { TimelineLite } from 'gsap';
 
 import "./global.scss";
 
+// I'm using lodash to throttle scroll event listener
+import _ from 'lodash';
+
 import ParallaxElement from "./components/ParallaxElement/ParallaxElement";
 import GreensockAnimation from "./containers/GreensockAnimation/GreensockAnimation";
 import BodymovinAnimation from "./containers/BodymovinAnimation/BodymovinAnimation";
@@ -22,6 +25,7 @@ export default class Main extends Component {
 
 	/* Triggered when component loads */
 	componentDidMount() {
+		// window.addEventListener('scroll', _.throttle(this.updateOnScroll, 80));
 		window.addEventListener("scroll", this.updateOnScroll);
 	}
 

@@ -50,9 +50,7 @@ export default class ParallaxElement extends Component {
 
 		return (
 			<div id={"parallax-container"} style={{ height: this.props.height }}>
-				{layers.map(function(layerProps, index){
-					return <ParallaxLayer {...layerProps} key={index} />;
-				})}
+				{layers.map( (layerProps, index) => <ParallaxLayer {...layerProps} key={index} /> )}
 			</div>
 		);
 	}
