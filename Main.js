@@ -10,6 +10,7 @@ import _ from 'lodash';
 import ParallaxElement from "./components/ParallaxElement/ParallaxElement";
 import GreensockAnimation from "./containers/GreensockAnimation/GreensockAnimation";
 import BodymovinAnimation from "./containers/BodymovinAnimation/BodymovinAnimation";
+import SvgAnimation from "./containers/SvgAnimation/SvgAnimation";
 
 export default class Main extends Component {
 
@@ -25,7 +26,8 @@ export default class Main extends Component {
 
 	/* Triggered when component loads */
 	componentDidMount() {
-		// window.addEventListener('scroll', _.throttle(this.updateOnScroll, 80));
+		/* This is an example of throttling event polling using lodash */
+		// window.addEventListener('scroll', _.throttle(this.updateOnScroll, 20));
 		window.addEventListener("scroll", this.updateOnScroll);
 	}
 
@@ -44,16 +46,19 @@ export default class Main extends Component {
 			<div id={"app-container"} ref={this.mainReference}>
 
 				{/*Our custom parallax scroll element*/}
-				<ParallaxElement height={1038} fromTop={this.state.fromTop} />
+				{/*<ParallaxElement height={1038} fromTop={this.state.fromTop} />*/}
 
 				{/*This should be a container view. Using one container for SPA and multiple with react router for structured application*/}
 				<div className={"generic-container"}>
 
 					{/*Our custom gsap animation element*/}
-					<GreensockAnimation fromTop={this.state.fromTop}/>
+					{/*<GreensockAnimation fromTop={this.state.fromTop}/>*/}
 
 					{/*Our custom gsap animation element*/}
-					<BodymovinAnimation fromTop={this.state.fromTop}/>
+					{/*<BodymovinAnimation fromTop={this.state.fromTop}/>*/}
+
+					{/*Our custom gsap animation element*/}
+					<SvgAnimation/>
 
 				</div>
 			</div>
