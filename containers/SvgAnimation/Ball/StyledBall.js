@@ -4,10 +4,7 @@ import React, { Component } from 'react';
 
 /* Testing "styled components" plugin. Report in README.md */
 import styled, { keyframes } from 'styled-components';
-
 import Svg from '../svg/ball.svg';
-// console.log(Svg);
-// console.log(Svg.getElementsByClassName('ball')); // Not working, use react ref
 
 const rotate360 = keyframes`
 		0% {

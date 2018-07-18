@@ -9,7 +9,9 @@ import _ from 'lodash';
 
 import ParallaxElement from "./components/ParallaxElement/ParallaxElement";
 import GreensockAnimation from "./containers/GreensockAnimation/GreensockAnimation";
+import Village from "./containers/VillageAnimation/Village";
 import BodymovinAnimation from "./containers/BodymovinAnimation/BodymovinAnimation";
+import ReactMotionAnimation from "./containers/ReactMotionAnimation/ReactMotionAnimation"
 import SvgAnimation from "./containers/SvgAnimation/SvgAnimation";
 
 export default class Main extends Component {
@@ -37,6 +39,7 @@ export default class Main extends Component {
 
 	updateOnScroll = () => {
 		const documentElement = document.scrollingElement || document.documentElement;
+		/* NOTE: Turned off, because it causes some scrolling bugs when used with react motion */
 		this.setState({fromTop: documentElement.scrollTop});
 	};
 
@@ -57,8 +60,14 @@ export default class Main extends Component {
 					{/*Our custom gsap animation element*/}
 					{/*<BodymovinAnimation fromTop={this.state.fromTop}/>*/}
 
-					{/*Our custom gsap animation element*/}
-					<SvgAnimation/>
+					{/*Our custom react-motion animation element*/}
+					{/*<ReactMotionAnimation/>*/}
+
+					{/*Custom SVG animation using styled component*/}
+					{/*<SvgAnimation/>*/}
+
+					{/*Custom SVG animation using styled component*/}
+					<Village/>
 
 				</div>
 			</div>
