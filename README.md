@@ -24,3 +24,13 @@ TASK: Try out react-motion
 REPORT:
 
 Light weight library for manipulating SVG assets: http://svgjs.com
+
+
+Nice example of isometric SVG asset with clean structure: https://github.com/projapati66/Svg-IsometricCityAnimation
+
+Notes on SVG Namespaces: https://developer.mozilla.org/en-US/docs/Web/SVG/Namespaces_Crash_Course
+
+SVG to Native React Component converter: https://github.com/smooth-code/svgr
+
+SVGO list of plugins: https://github.com/svg/svgo
+
