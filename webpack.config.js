@@ -55,13 +55,27 @@ module.exports = {
 										removeTitle: true
 									},
 									{
+										convertTransform: {
+											convertToShorts: true,
+											floatPrecision: 3,
+											transformPrecision: 5,
+											matrixToTransform: true,
+											shortTranslate: true,
+											shortScale: true,
+											shortRotate: true,
+											removeUseless: true,
+											collapseIntoOne: true,
+											leadingZero: true,
+											negativeExtraSpace: false
+										}
+									},
+									{
 										cleanupIDs: {
 											remove: false,
 											minify: false
 										}
 									}
-								],
-								floatPrecision: 2
+								]
 							}
 						}
 					}

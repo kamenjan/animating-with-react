@@ -34,3 +34,12 @@ SVG to Native React Component converter: https://github.com/smooth-code/svgr
 
 SVGO list of plugins: https://github.com/svg/svgo
 
+SVG specs and 3D compatibility issues: https://greensock.com/forums/topic/12022-3d-transform-not-working-in-firefox/
+
+Exporting SVGs using Sketch, best practices: 
+https://medium.com/sketch-app-sources/the-best-way-to-export-an-svg-from-sketch-dd8c66bb6ef2
+https://medium.com/sketch-app-sources/exploring-ways-to-export-clean-svg-icons-with-sketch-the-correct-way-752e73ec4694
+
+Sketch preferences: https://www.sketchapp.com/docs/preferences//?utm_source=designernews
+
+Animating along a path using GSAP: https://greensock.com/forums/topic/13581-animate-svg-object-along-motion-path/

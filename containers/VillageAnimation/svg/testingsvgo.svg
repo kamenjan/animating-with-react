@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1000" viewBox="200 200 1200 1000">
+  <g id="Page-1" fill="none" fill-rule="evenodd">
+    <path id="x-axis" stroke="#979797" d="M2,862.572951 L1208,166.288526 L2,862.572951 Z"/>
+    <path id="y-axis" stroke="#979797" d="M0,146.198331 L1223,852.29771 L0,146.198331 Z"/>
+    <path id="car3" fill="#D8D8D8" stroke="#979797" d="M56.5,811.5 L56.5,830.5 L90.5,830.5 L90.5,811.5 L56.5,811.5 Z"/>
+    <path id="car2" fill="#D8D8D8" stroke="#979797" d="M136.5,225.5 L136.5,244.5 L170.5,244.5 L170.5,225.5 L136.5,225.5 Z"/>
+    <path id="car1" fill="#D8D8D8" stroke="#979797" d="M150.5,757.5 L150.5,776.5 L184.5,776.5 L184.5,757.5 L150.5,757.5 Z"/>
+  </g>
+</svg>
