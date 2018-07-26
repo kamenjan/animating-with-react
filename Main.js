@@ -9,10 +9,10 @@ import _ from 'lodash';
 
 import ParallaxElement from "./components/ParallaxElement/ParallaxElement";
 import GreensockAnimation from "./containers/GreensockAnimation/GreensockAnimation";
-import Village from "./containers/VillageAnimation/Village";
-import Shooter from "./containers/VillageAnimation/Shooter";
 import BodymovinAnimation from "./containers/BodymovinAnimation/BodymovinAnimation";
 import ReactMotionAnimation from "./containers/ReactMotionAnimation/ReactMotionAnimation"
+
+
 import SvgAnimation from "./containers/SvgAnimation/SvgAnimation";
 
 export default class Main extends Component {
@@ -64,14 +64,8 @@ export default class Main extends Component {
 					{/*Our custom react-motion animation element*/}
 					{/*<ReactMotionAnimation/>*/}
 
-					{/*Custom SVG animation using styled component*/}
-					{/*<SvgAnimation/>*/}
-
-					{/*Custom SVG animation using styled component*/}
-					{/*<Village/>*/}
-
-					{/*Custom SVG animation using styled component*/}
-					<Shooter/>
+					{/*Custom SVG animation using GSAP, styled component, SVG components, SVGO ... */}
+					<SvgAnimation/>
 
 				</div>
 			</div>

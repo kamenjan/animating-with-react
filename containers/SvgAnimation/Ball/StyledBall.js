@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 
 /* Testing "styled components" plugin. Report in README.md */
 import styled, { keyframes } from 'styled-components';
-import Svg from '../svg/ball.svg';
+import Svg from '../svg/ball/ball.svg';
 
 const rotate360 = keyframes`
 		0% {

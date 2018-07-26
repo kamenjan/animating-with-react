@@ -1,18 +1,18 @@
 import React, { Component } from "react";
 
-import { TimelineLite } from 'gsap';
+// import { TimelineLite } from 'gsap';
+import { TweenLite } from 'gsap';
 
-import SvgBasic from "./svg/basic.svg";
-import StyledBall from "./Ball/StyledBall";
+// import SvgComponent from "./SvgComponent";
+import PlpSvg from "./svg/plp/plp.svg";
+
+import _ from "lodash";
 
 export default class SvgAnimation extends Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {
-			svgAnimationStyle: {}
-		};
-		// this.tl = new TimelineLite();
+		this.citySvgRef = React.createRef();
 	}
 
 	/* Triggered before component loads */
@@ -20,20 +20,38 @@ export default class SvgAnimation extends Component {
 
 	/* Triggered when component loads */
 	componentDidMount() {
+		// const svgElemetsIDs = () => [ 'truck-svg', 'inn', 'blacksmith' ];
+		// const svgDomElements = ids => ids.map( id => document.getElementById(id));
+		// const animationProps = () => ({ ease: Elastic.easeOut.config(1, 0.3), transform: "scale(0)" });
 
+		const svgItems = this.citySvgRef.current.querySelector("#svg");
+
+		const car1 = svgItems.querySelector("#car1");
+		const car2 = svgItems.querySelector("#car2");
+
+		const moveAlongCubicalXAxis = (length) => ({ x: length*Math.cos(Math.PI / 6), y: -length*Math.sin(Math.PI / 6) });
+		const moveAlongCubicalYAxis = (length) => ({ x: length*Math.cos(Math.PI / 6), y: length*Math.sin(Math.PI / 6) });
+
+		const animation = new TimelineLite({onComplete:function() { this.restart() }});
+
+		// Play just the sought part of the animation
+		// animation.seek("fourth");
+
+		// Speed up animation
+		// animation.timeScale(4);
 	}
 
 	componentWillUnmount() {}
 
-	componentWillUpdate () {
-
-	}
+	componentWillUpdate() {}
 
 	render() {
 		return (
-			<div id={"svg-container"}>
-				{/*<SvgBasic />*/}
-				<StyledBall />
+			<div id={"village-container"} ref={this.citySvgRef}>
+				<div style={{width: '567px', height: '579px', overflow: 'hidden'}}>
+					<PlpSvg id={"svg"} style={{ }} />
+					{/*<StyledBall />*/}
+				</div>
 			</div>
 		);
 	}

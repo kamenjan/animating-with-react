@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1918" height="1283" viewBox="0 0 1918 1283">
+  <g id="Page-1" fill="none" fill-rule="evenodd">
+    <g id="cube4" fill-rule="nonzero" transform="translate(1657 26)">
+      <polygon id="top" fill="#E2E2E2" points="87.203 100.8 .6 50.8 87.203 .8 173.805 50.8"/>
+      <polygon id="left" fill="#D8D8D8" points=".601 150.8 .601 50.8 87.204 100.8 87.204 200.8"/>
+      <polygon id="right" fill="#C3C3C3" points="87.2 100.8 173.803 50.8 173.803 150.8 87.2 200.8"/>
+    </g>
+    <g id="cube5" fill-rule="nonzero" transform="translate(1744 76)">
+      <polygon id="top" fill="#E2E2E2" points="86.802 100.8 .2 50.8 86.802 .8 173.405 50.8"/>
+      <polygon id="left" fill="#D8D8D8" points=".201 150.8 .201 50.8 86.804 100.8 86.804 200.8"/>
+      <polygon id="right" fill="#C3C3C3" points="86.8 100.8 173.402 50.8 173.402 150.8 86.8 200.8"/>
+    </g>
+    <g id="cube1" fill-rule="nonzero" transform="translate(1571 76)">
+      <polygon id="top" fill="#E2E2E2" points="86.603 100.8 0 50.8 86.603 .8 173.205 50.8"/>
+      <polygon id="left" fill="#D8D8D8" points=".001 150.8 .001 50.8 86.604 100.8 86.604 200.8"/>
+      <polygon id="right" fill="#C3C3C3" points="86.6 100.8 173.203 50.8 173.203 150.8 86.6 200.8"/>
+    </g>
+    <g id="cube2" fill-rule="nonzero" transform="translate(1657 126)">
+      <polygon id="top" fill="#E2E2E2" points="87.203 100.8 .6 50.8 87.203 .8 173.805 50.8"/>
+      <polygon id="left" fill="#D8D8D8" points=".601 150.8 .601 50.8 87.204 100.8 87.204 200.8"/>
+      <polygon id="right" fill="#C3C3C3" points="87.2 100.8 173.803 50.8 173.803 150.8 87.2 200.8"/>
+    </g>
+    <g id="cube3" fill-rule="nonzero" transform="translate(1744 176)">
+      <polygon id="top" fill="#E2E2E2" points="86.802 100.8 .2 50.8 86.802 .8 173.405 50.8"/>
+      <polygon id="left" fill="#D8D8D8" points=".201 150.8 .201 50.8 86.804 100.8 86.804 200.8"/>
+      <polygon id="right" fill="#C3C3C3" points="86.8 100.8 173.402 50.8 173.402 150.8 86.8 200.8"/>
+    </g>
+    <g id="cube1" fill-rule="nonzero" transform="translate(666)">
+      <polygon id="top" fill="#E2E2E2" points="86.603 100.8 0 50.8 86.603 .8 173.205 50.8"/>
+      <polygon id="left" fill="#D8D8D8" points=".001 150.8 .001 50.8 86.604 100.8 86.604 200.8"/>
+      <polygon id="right" fill="#C3C3C3" points="86.6 100.8 173.203 50.8 173.203 150.8 86.6 200.8"/>
+    </g>
+    <g id="cube2" fill-rule="nonzero" transform="translate(752 50)">
+      <polygon id="top" fill="#E2E2E2" points="87.203 100.8 .6 50.8 87.203 .8 173.805 50.8"/>
+      <polygon id="left" fill="#D8D8D8" points=".601 150.8 .601 50.8 87.204 100.8 87.204 200.8"/>
+      <polygon id="right" fill="#C3C3C3" points="87.2 100.8 173.803 50.8 173.803 150.8 87.2 200.8"/>
+    </g>
+    <g id="cube4" fill-rule="nonzero" transform="translate(925 50)">
+      <polygon id="top" fill="#E2E2E2" points="87.403 100.8 .8 50.8 87.403 .8 174.005 50.8"/>
+      <polygon id="left" fill="#D8D8D8" points=".801 150.8 .801 50.8 87.404 100.8 87.404 200.8"/>
+      <polygon id="right" fill="#C3C3C3" points="87.4 100.8 174.003 50.8 174.003 150.8 87.4 200.8"/>
+    </g>
+    <g id="cube3" fill-rule="nonzero" transform="translate(839 100)">
+      <polygon id="top" fill="#E2E2E2" points="86.803 100.8 .2 50.8 86.803 .8 173.405 50.8"/>
+      <polygon id="left" fill="#D8D8D8" points=".201 150.8 .201 50.8 86.804 100.8 86.804 200.8"/>
+      <polygon id="right" fill="#C3C3C3" points="86.8 100.8 173.403 50.8 173.403 150.8 86.8 200.8"/>
+    </g>
+    <g id="cube1" fill-rule="nonzero" transform="translate(87 932)">
+      <polygon id="top" fill="#E2E2E2" points="86.603 100.8 0 50.8 86.603 .8 173.205 50.8"/>
+      <polygon id="left" fill="#D8D8D8" points=".001 150.8 .001 50.8 86.604 100.8 86.604 200.8"/>
+      <polygon id="right" fill="#C3C3C3" points="86.6 100.8 173.203 50.8 173.203 150.8 86.6 200.8"/>
+    </g>
+    <g id="cube2" fill-rule="nonzero" transform="translate(173 982)">
+      <polygon id="top" fill="#E2E2E2" points="87.203 100.8 .6 50.8 87.203 .8 173.805 50.8"/>
+      <polygon id="left" fill="#D8D8D8" points=".601 150.8 .601 50.8 87.204 100.8 87.204 200.8"/>
+      <polygon id="right" fill="#C3C3C3" points="87.2 100.8 173.803 50.8 173.803 150.8 87.2 200.8"/>
+    </g>
+    <g id="cube3" fill-rule="nonzero" transform="translate(0 982)">
+      <polygon id="top" fill="#E2E2E2" points="87.003 100.8 .4 50.8 87.003 .8 173.605 50.8"/>
+      <polygon id="left" fill="#D8D8D8" points=".401 150.8 .401 50.8 87.004 100.8 87.004 200.8"/>
+      <polygon id="right" fill="#C3C3C3" points="87 100.8 173.603 50.8 173.603 150.8 87 200.8"/>
+    </g>
+    <g id="cube4" fill-rule="nonzero" transform="translate(87 1032)">
+      <polygon id="top" fill="#E2E2E2" points="86.603 100.8 0 50.8 86.603 .8 173.205 50.8"/>
+      <polygon id="left" fill="#D8D8D8" points=".001 150.8 .001 50.8 86.604 100.8 86.604 200.8"/>
+      <polygon id="right" fill="#C3C3C3" points="86.6 100.8 173.203 50.8 173.203 150.8 86.6 200.8"/>
+    </g>
+    <g id="cube5" fill-rule="nonzero" transform="translate(173 1082)">
+      <polygon id="top" fill="#E2E2E2" points="87.203 100.8 .6 50.8 87.203 .8 173.805 50.8"/>
+      <polygon id="left" fill="#D8D8D8" points=".601 150.8 .601 50.8 87.204 100.8 87.204 200.8"/>
+      <polygon id="right" fill="#C3C3C3" points="87.2 100.8 173.803 50.8 173.803 150.8 87.2 200.8"/>
+    </g>
+  </g>
+</svg>

@@ -55,24 +55,13 @@ module.exports = {
 										removeTitle: true
 									},
 									{
-										convertTransform: {
-											convertToShorts: true,
-											floatPrecision: 3,
-											transformPrecision: 5,
-											matrixToTransform: true,
-											shortTranslate: true,
-											shortScale: true,
-											shortRotate: true,
-											removeUseless: true,
-											collapseIntoOne: true,
-											leadingZero: true,
-											negativeExtraSpace: false
-										}
-									},
-									{
-										cleanupIDs: {
-											remove: false,
-											minify: false
+										removeUnknownsAndDefaults: {
+											unknownContent: true,
+											unknownAttrs: false,
+											defaultAttrs: true,
+											uselessOverrides: true,
+											keepDataAttrs: true,
+											keepAriaAttrs: true
 										}
 									}
 								]
