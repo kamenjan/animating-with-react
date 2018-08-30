@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import { Router, Switch, Route } from 'react-router-dom'
+import {TransitionGroup, Transition} from 'react-transition-group'
 import history from 'services/history'
 import "./global.scss"
 /* I'm using lodash to throttle scroll event listener */
@@ -20,23 +21,23 @@ import Slovenia from "./containers/SvgAnimation/Slovenia/Slovenia"
 export default class Main extends Component {
 
 	constructor() {
-		super();
+		super()
 		this.state = {
 			fromTop: 0,
 			width: window.innerWidth
-		};
+		}
 
-		this.routes = [
-			{ component: ParallaxEffect, exact: false, path: `/` }, // Default path
-			{ component: GreensockAnimation, exact: false, path: `/${GreensockAnimation.name}` },
-      { component: BodymovinAnimation, exact: false, path: `/${BodymovinAnimation.name}` },
-      { component: ReactMotionAnimation, exact: false, path: `/${ReactMotionAnimation.name}` }
-		]
+    this.routes = [
+      { component: ParallaxEffect,        title: ParallaxEffect.name,       exact: true,  path: `/` },
+      { component: GreensockAnimation,    title: GreensockAnimation.name,   exact: false, path: `/${GreensockAnimation.name}` },
+      { component: BodymovinAnimation,    title: BodymovinAnimation.name,   exact: false, path: `/${BodymovinAnimation.name}` },
+      { component: ReactMotionAnimation,  title: ReactMotionAnimation.name, exact: false, path: `/${ReactMotionAnimation.name}` }
+    ]
 	}
 
 	componentDidMount() {
 		/* This is an example of throttling event polling using lodash */
-		// window.addEventListener('scroll', _.throttle(this.updateOnScroll, 20));
+		// window.addEventListener('scroll', _.throttle(this.updateOnScroll, 20))
 		window.addEventListener("scroll", this.updateOnScroll)
 		window.addEventListener('resize', this.updateOnResize)
 	}
@@ -60,18 +61,29 @@ export default class Main extends Component {
 		return (
 			<Router history={history}>
 				<div id={"app-container"}>
-					<Menu routes={this.routes} />
-					<Switch>
-            {this.routes.map((route, i) =>
-              <Route exact path={route.path} key={i} render={ (props) => (
-                React.createElement(route.component, { ... props, fromTop:this.state.fromTop, height:1038  })
-							)}/>
-            )}
-						{/*<Route path="/8" component={SvgAnimation} />*/}
-						{/*<Route path="/1" component={PLPAnimation} />*/}
-						{/*<Route path="/6" component={TransitionAnimation} />*/}
-						{/*<Route path="/7" component={Slovenia} />*/}
-					</Switch>
+					<Menu routes={this.routes.map( route => ({path: route.path, title: route.title}) )} />
+          {/*<Menu routes={this.routes} />*/}
+          <Route path="/" render={(props) => (
+            <TransitionGroup>
+              <Transition
+                // For transitions API to work, transition key has to be set and unique!
+                key={props.location.key}
+                mountOnEnter={false}
+                unmountOnExit={false}
+                timeout={0}
+              >
+                {state =>
+                  <Switch location={props.location}>
+                    {this.routes.map(({ component, exact, path }, i) =>
+                      <Route exact={exact} path={path} key={i} render={ (props) => (
+                        React.createElement(component, { ... props, transitionState: state, transitionTimeout: 1.2, fromTop:this.state.fromTop, height:1038  })
+                      )}/>
+                    )}
+                  </Switch>
+                }
+              </Transition>
+            </TransitionGroup>
+          )}/>
 				</div>
 			</Router>
 		);

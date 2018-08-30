@@ -27,7 +27,7 @@ export default class Menu extends Component {
 				<div id={`main-menu-button`} onClick={this.toggleDropdown}>MENU</div>
 				<div id={`main-menu-item-container`}>
 					<ul style={{listStyle: `none`, display: `${this.state.open ? `block` : `none`}`}}>
-						{this.props.routes.map( ({path, component}, index) => <li key={index}><Link to={path}>{path}</Link></li> )}
+						{this.props.routes.map( ({path, title}, index) => <li key={index}><Link to={path}>{title}</Link></li> )}
 					</ul>
 				</div>
 			</div>
