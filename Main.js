@@ -21,19 +21,56 @@ import Slovenia from "./containers/SvgAnimation/Slovenia/Slovenia"
 export default class Main extends Component {
 
 	constructor() {
-		super()
-		this.state = {
-			fromTop: 0,
-			width: window.innerWidth
-		}
+    super()
+    this.state = {
+      fromTop: 0,
+      width: window.innerWidth
+    }
 
-    this.routes = [
-      { component: ParallaxEffect,        title: ParallaxEffect.name,       exact: true,  path: `/` },
-      { component: GreensockAnimation,    title: GreensockAnimation.name,   exact: false, path: `/${GreensockAnimation.name}` },
-      { component: BodymovinAnimation,    title: BodymovinAnimation.name,   exact: false, path: `/${BodymovinAnimation.name}` },
-      { component: ReactMotionAnimation,  title: ReactMotionAnimation.name, exact: false, path: `/${ReactMotionAnimation.name}` }
-    ]
-	}
+    this.routes = [ParallaxEffect, GreensockAnimation, BodymovinAnimation, ReactMotionAnimation]
+  }
+
+	getRoutes = () => ([
+    {
+      component: ParallaxEffect,
+      title: ParallaxEffect.name,
+      exact: false,
+      path: `/${ParallaxEffect.name}`,
+      ownProps: {
+        transitionTimeout: 0,
+        fromTop: this.state.fromTop,
+        height: 1038
+      }
+    },
+    {
+      component: GreensockAnimation,
+      title: GreensockAnimation.name,
+      exact: true,
+      // path: `/${GreensockAnimation.name}`,
+      path: `/`,
+      ownProps: {
+        transitionTimeout: 0
+      }
+    },
+    {
+      component: BodymovinAnimation,
+      title: BodymovinAnimation.name,
+      exact: false,
+      path: `/${BodymovinAnimation.name}`,
+      ownProps: {
+        transitionTimeout: 0
+      }
+    },
+    {
+      component: ReactMotionAnimation,
+      title: ReactMotionAnimation.name,
+      exact: false,
+      path: `/${ReactMotionAnimation.name}`,
+      ownProps: {
+        transitionTimeout: 0
+      }
+    }
+  ])
 
 	componentDidMount() {
 		/* This is an example of throttling event polling using lodash */
@@ -49,10 +86,11 @@ export default class Main extends Component {
 
 	updateOnScroll = () => {
 		const documentElement = document.scrollingElement || document.documentElement
-		/* NOTE: Turned off, because it causes some scrolling bugs when used with react motion */
+		/* NOTE: Known to cause some scrolling bugs when used with react motion */
 		this.setState({fromTop: documentElement.scrollTop})
 	};
 
+  /* NOTE: Not hooked to anything */
 	updateOnResize = () => {
 		this.setState({ width: window.innerWidth })
 	};
@@ -61,12 +99,10 @@ export default class Main extends Component {
 		return (
 			<Router history={history}>
 				<div id={"app-container"}>
-					<Menu routes={this.routes.map( route => ({path: route.path, title: route.title}) )} />
-          {/*<Menu routes={this.routes} />*/}
+					<Menu routes={this.getRoutes().map(({path, title}) => ({path, title}))} />
           <Route path="/" render={(props) => (
             <TransitionGroup>
               <Transition
-                // For transitions API to work, transition key has to be set and unique!
                 key={props.location.key}
                 mountOnEnter={false}
                 unmountOnExit={false}
@@ -74,9 +110,12 @@ export default class Main extends Component {
               >
                 {state =>
                   <Switch location={props.location}>
-                    {this.routes.map(({ component, exact, path }, i) =>
+                    {this.getRoutes().map(({ component, exact, path, ownProps }, i) =>
                       <Route exact={exact} path={path} key={i} render={ (props) => (
-                        React.createElement(component, { ... props, transitionState: state, transitionTimeout: 1.2, fromTop:this.state.fromTop, height:1038  })
+                        React.createElement(component, {
+                          ... props, ... ownProps,
+                          transitionState: state
+                        })
                       )}/>
                     )}
                   </Switch>
@@ -86,9 +125,6 @@ export default class Main extends Component {
           )}/>
 				</div>
 			</Router>
-		);
+		)
 	}
-
-
-
 }

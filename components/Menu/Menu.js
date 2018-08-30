@@ -6,18 +6,18 @@ import { compose, logValue } from "services/functional"
 export default class Menu extends Component {
 
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
-			open: false,
+			open: false
 		};
 	}
 
 	/* NOTE: Accessibility function. Code for handling toggle menu on key press */
-	// componentDidMount = () => window.addEventListener("keydown", this.handleKeyPressNew);
-	// keyCodeToUrl = keyCode => `/${keyCode - 48}`;
-	// redirectTo = url => history.push(url);
-	// keyCodeToRedirect = keyCode => compose(this.keyCodeToUrl, this.redirectTo)(keyCode);
-	// handleKeyPressNew = (event) => event.keyCode === 77 ? this.toggleDropdown() : (event.keyCode > 48 && event.keyCode < 58) ? this.keyCodeToRedirect(event.keyCode) : null;
+	// componentDidMount = () => window.addEventListener("keydown", this.handleKeyPressNew)
+	// keyCodeToUrl = keyCode => `/${keyCode - 48}`
+	// redirectTo = url => history.push(url)
+	// keyCodeToRedirect = keyCode => compose(this.keyCodeToUrl, this.redirectTo)(keyCode)
+	// handleKeyPressNew = (event) => event.keyCode === 77 ? this.toggleDropdown() : (event.keyCode > 48 && event.keyCode < 58) ? this.keyCodeToRedirect(event.keyCode) : null
 
   toggleDropdown = () => this.setState({ open: !this.state.open });
 
