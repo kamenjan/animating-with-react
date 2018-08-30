@@ -63,7 +63,16 @@ module.exports = {
 											keepDataAttrs: true,
 											keepAriaAttrs: true
 										}
-									}
+									},
+                  {
+                    cleanupIDs: {
+                      remove: false,
+                      minify: false,
+                      prefix: '',
+                      preserve: [],
+                      force: false
+                    }
+                  }
 								]
 							}
 						}
