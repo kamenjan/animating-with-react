@@ -5,6 +5,7 @@ import { TweenLite } from 'gsap';
 
 // import SvgComponent from "./SvgComponent";
 import PlpSvg from "./svg/plp/plp.svg";
+import ExampleSvg from "./svg/tmp/MonSvgBlendModeAddedAfterSketch.svg"
 
 import _ from "lodash";
 
@@ -14,9 +15,6 @@ export default class SvgAnimation extends Component {
 		super(props);
 		this.citySvgRef = React.createRef();
 	}
-
-	/* Triggered before component loads */
-	componentWillMount() {}
 
 	/* Triggered when component loads */
 	componentDidMount() {
@@ -34,22 +32,19 @@ export default class SvgAnimation extends Component {
 
 		const animation = new TimelineLite({onComplete:function() { this.restart() }});
 
-		// Play just the sought part of the animation
+		/* Play just the sought part of the animation */
 		// animation.seek("fourth");
 
-		// Speed up animation
+		/* Speed up animation */
 		// animation.timeScale(4);
 	}
 
-	componentWillUnmount() {}
-
-	componentWillUpdate() {}
-
 	render() {
 		return (
-			<div id={"village-container"} ref={this.citySvgRef}>
+			<div id={"svg-container"} ref={this.citySvgRef}>
 				<div style={{width: '567px', height: '579px', overflow: 'hidden'}}>
-					<PlpSvg id={"svg"} style={{ }} />
+					<ExampleSvg id={"svg"} style={{ }} />
+					{/*<PlpSvg id={"svg"} style={{ }} />*/}
 					{/*<StyledBall />*/}
 				</div>
 			</div>

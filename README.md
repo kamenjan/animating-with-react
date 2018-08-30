@@ -48,3 +48,5 @@ SVGO ISSUE:
 If I let my SVG through SVGO (included in react-svg-loader) without changing anything I get a nice compressed SVG that converted all transforms to attributes, but also lose my IDs. But when I enable "Clean IDs" plugin I do get my IDs, but transforms stay as a style.
 
 SOLUTION: Rename "id" attribute to custom attribute (eg. "id_") raw unoptimized SVG file. Disable "removeUnknownsAndDefaults" plugin so we can keep the custom attribute. Write a custom SVG service in application for handling this custom attribute.
+
+SVGO ISSUE #2: Adobe export

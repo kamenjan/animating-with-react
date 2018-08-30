@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="426px" height="209px" viewBox="0 0 426 209" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>Slice 1</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50.2163735%" y1="-46.1747712%" x2="49.7536028%" y2="160.828813%" id="linearGradient-1">
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#000000" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="MonSvgWithoutBlendModeLineartozero" fill-rule="nonzero">
+            <path d="M79.02,98.04 C14.76,112.49 0.61,126.61 0.02,137.04 C-1.59,165.61 96.88,197.5 177.02,205.04 C228.88,209.92 309.37,217.48 370.02,166.04 C410.25,131.92 435.56,77.04 422.02,62.04 C403.53,41.5 332.13,117.04 259.02,93.04 C197.22,72.79 187.6,-1.02 149.02,1.04 C131.26,1.99 106.32,19.08 79.02,98.04 Z" id="Base" fill="#45FFFF"></path>
+            <path d="M79.02,98.04 C14.76,112.49 0.61,126.61 0.02,137.04 C-1.59,165.61 96.88,197.5 177.02,205.04 C228.88,209.92 309.37,217.48 370.02,166.04 C410.25,131.92 435.56,77.04 422.02,62.04 C403.53,41.5 332.13,117.04 259.02,93.04 C197.22,72.79 187.6,-1.02 149.02,1.04 C131.26,1.99 106.32,19.08 79.02,98.04 Z" id="Gradient" fill="url(#linearGradient-1)" style="mix-blend-mode: multiply;"></path>
+        </g>
+    </g>
+</svg>

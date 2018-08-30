@@ -5,7 +5,7 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-	entry: ["babel-polyfill", "./app.js"],
+	entry: ["babel-polyfill", "./App.js"],
 	output: {
 		path: path.resolve(__dirname, "dist"),
 		filename: "js/[name].js"

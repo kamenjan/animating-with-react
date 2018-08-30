@@ -15,7 +15,9 @@ export default class GreensockAnimation extends Component {
 	}
 
 	/* Triggered before component loads */
-	componentWillMount() {}
+	componentWillMount() {
+
+	}
 
 	/* Triggered when component loads */
 	componentDidMount() {

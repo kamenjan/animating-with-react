@@ -122,8 +122,8 @@ export default class ReactMotionAnimation extends Component {
 										<rect x={"30"} y={"5"} fill={"white"} stroke={"black"} width={"90"} height={"90"}/>
 										<circle fill={"white"} stroke={"black"} cx={"180"} cy={"50"} r={"45"}/>
 									</g>
-									<g fill="none" opacity="1" stroke="black" stroke-width="1">
-										<path  fill-rule="nonzero" d="M 50 0 h 100 v 100 l -50 50 h -100 v -100 l 50 -50 M 0 50 h 100 v 100 M 150 0 l -50 50"/>
+									<g fill="none" opacity="1" stroke="black" strokeWidth="1">
+										<path  fillRule="nonzero" d="M 50 0 h 100 v 100 l -50 50 h -100 v -100 l 50 -50 M 0 50 h 100 v 100 M 150 0 l -50 50"/>
 										{/*<path stroke-dasharray="5,5"d="M 50 0 v 100 h 100 M 0 150 l 50 -50"/>*/}
 									</g>
 								</svg>

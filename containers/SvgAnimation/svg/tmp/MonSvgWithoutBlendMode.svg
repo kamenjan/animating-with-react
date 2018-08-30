@@ -1,0 +1,11 @@
+<svg id="Grupa" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 425.69 207.53">
+  <defs>
+    <linearGradient id="linear-gradient" x1="401.25" y1="107.63" x2="399.28" y2="537.23" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="1"/>
+    </linearGradient>
+  </defs>
+  <title>MonSvgWithoutBlendMode</title>
+  <path id="Base" d="M266.5,300.5c-64.26,14.45-78.41,28.57-79,39-1.61,28.57,96.86,60.46,177,68,51.86,4.88,132.35,12.44,193-39,40.23-34.12,65.54-89,52-104-18.49-20.54-89.89,55-163,31-61.8-20.25-71.42-94.06-110-92C318.74,204.45,293.8,221.54,266.5,300.5Z" transform="translate(-187.48 -203.46)" fill="#45ffff"/>
+  <path id="Gradient" d="M266.5,300.5c-64.26,14.45-78.41,28.57-79,39-1.61,28.57,96.86,60.46,177,68,51.86,4.88,132.35,12.44,193-39,40.23-34.12,65.54-89,52-104-18.49-20.54-89.89,55-163,31-61.8-20.25-71.42-94.06-110-92C318.74,204.45,293.8,221.54,266.5,300.5Z" transform="translate(-187.48 -203.46)" fill="url(#linear-gradient)"/>
+</svg>
