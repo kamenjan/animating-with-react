@@ -16,17 +16,17 @@ export default class GreensockAnimation extends Component {
     const line = this.lineRef.current.querySelector("#line")
     const lineLength = line.getTotalLength()
     this.tl.set(line, {strokeDasharray: lineLength})
-			.from(line, 1000, {strokeDashoffset: lineLength})
+			.from(line, 100, {strokeDashoffset: lineLength})
 		// this.tl.pause() // To traverse timeline using tl.progress() first pause it
 	}
 
 
 	/* NOTE: I can check clients viewport position and use it to manipulate transition progress  */
 	componentWillUpdate () {
-		let offset = this.props.fromTop;
-		if (offset < 350 ) return this.tl.progress(0);
-		let position = ((offset - 350) / 350) * 0.4;
-		// this.tl.progress(position);
+		let offset = this.props.fromTop
+		if (offset < 350 ) return this.tl.progress(0)
+		let position = ((offset - 350) / 350) * 0.4
+		// this.tl.progress(position)
 	}
 
 	render() {

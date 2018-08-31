@@ -1,65 +1,88 @@
-import React, { Component } from "react";
-import history from "../../services/history_transition";
+import React, {Component} from "react"
+import {Redirect} from 'react-router'
+import {BrowserRouter, Route, Switch, Link} from 'react-router-dom'
+import {TransitionGroup, Transition} from 'react-transition-group'
 
-import { Router, Route, Link, Switch } from "react-router-dom";
-import { CSSTransition, TransitionGroup, Transition } from 'react-transition-group';
-import { TweenLite, TweenMax } from 'gsap';
+import PropTypes from "prop-types"
+import history from 'services/history'
 
-import First from "./scenes/First";
-import Second from "./scenes/Second";
-import Third from "./scenes/Third";
-
-import SolarSystem from "./scenes/SolarSystem";
+import FirstScene from "./scenes/FirstScene/FirstScene"
+import SecondScene from "./scenes/SecondScene/SecondScene"
+import ThirdScene from "./scenes/ThirdScene/ThirdScene"
 
 export default class TransitionAnimation extends Component {
 
-	constructor() {
-		super();
-		this.state = {
-			show: false,
-			entered: false,
-		};
-	}
+  constructor() {
+    super()
+    this.state = {
+      path: "/",
+    }
+  }
 
-	completeCall = target => {
-		TweenLite.set(target, { clearProps: "position, width" });
-	};
+  /* TODO: Define routes/scenes the proper way */
+  links = () => [
+    {path: "/", component: FirstScene},
+    {path: "/SecondScene", component: SecondScene},
+    {path: "/ThirdScene", component: ThirdScene}
+  ]
 
-	render() {
-
-		const { show } = this.state;
-
-		return (
-			<div>
-				<div
-					onClick={() => {
-						this.setState(state => ({
-							show: !state.show,
-						}));
-					}}
-				>
-					Toggle
-				</div>
-
-				<Transition
-					in={show}
-					timeout={{ enter: 900, exit: 900 }}
-					unmountOnExit
-					onEntering={node => {
-						// do something when entering the component transition
-					}}
-					onEnter={node => {
-
-					}}
-				>
-					{(status) => (
-						<div>
-							<h3>Transition status: {status}</h3>
-							<SolarSystem id={"solar-system"} status={status} style={{ }} />
-						</div>
-					)}
-				</Transition>
-			</div>
-		);
-	}
+  render() {
+    return (
+      <BrowserRouter>
+        <div id={`desktop-wrapper`}>
+          <section id={`nav-menu`}>
+            <span><Link to="/">First Scene</Link></span>
+            <span><Link to="/about-us">Second Scene</Link></span>
+            <span><Link to="/work">Third Scene</Link></span>
+          </section>
+          <Route path="/" render={(props) => (
+            <TransitionGroup>
+              <Transition
+                // For transitions API to work, transition key has to be set and unique!
+                key={props.location.key}
+                mountOnEnter={false}
+                unmountOnExit={false}
+                timeout={2000}
+                // I have state available in my transition components ...
+                // onEntering={el => { console.log('entering', el) }}
+                // onExit={el => { console.log('exit', el) }}
+                // ... so do I really need these? Leave for reference and global changes
+              >
+                {state =>
+                  <Switch location={props.location}>
+                    <Route exact path="/" render={(props) => (
+                      <SecondScene
+                        { ... props}
+                        transitionState={state}
+                        transitionTimeout={1.2}
+                      />
+                    )}/>
+                    <Route exact path="/second-scene" render={(props) => (
+                      <FirstScene
+                        { ... props}
+                        transitionState={state}
+                        transitionTimeout={1.2}
+                      />
+                    )}/>
+                    <Route exact  path="/third-scene" render={(props) => (
+                      <ThirdScene
+                        { ... props}
+                        transitionState={state}
+                        transitionTimeout={0.2}
+                      />
+                    )}/>
+                  </Switch>
+                }
+              </Transition>
+            </TransitionGroup>
+          )}/>
+        </div>
+      </BrowserRouter>
+    );
+  }
 }
+
+TransitionAnimation.propTypes = {
+  // transitionState: PropTypes.string,
+  // transitionTimeout: PropTypes.number
+};

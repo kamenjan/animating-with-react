@@ -30,6 +30,8 @@ export default class Main extends Component {
     this.routes = [ParallaxEffect, GreensockAnimation, BodymovinAnimation, ReactMotionAnimation]
   }
 
+
+
 	getRoutes = () => ([
     {
       component: ParallaxEffect,
