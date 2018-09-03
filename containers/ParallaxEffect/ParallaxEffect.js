@@ -18,10 +18,6 @@ export default class ParallaxEffect extends Component {
 		super(props)
 	}
 
-  componentWillReceiveProps(nextProps) {
-    console.log(nextProps.fromTop);
-  }
-
 	render() {
 		let layers = [
 			{

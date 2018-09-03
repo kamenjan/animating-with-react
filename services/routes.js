@@ -7,8 +7,6 @@ import ReactMotionAnimation
 import BodymovinAnimation
   from "../containers/BodymovinAnimation/BodymovinAnimation"
 
-// Missing [this.state.fromTop] prop
-// use (fromTop) => fromTop
 import ParallaxEffect
   from "../containers/ParallaxEffect/ParallaxEffect"
 
@@ -69,7 +67,7 @@ module.exports = {
       component: FirstScene,
       title: FirstScene.name,
       exact: true,
-      path: `/${FirstScene.name}`,
+      path: `/transition/${FirstScene.name}`,
       ownProps: {
         transitionTimeout: 1
       }
@@ -78,7 +76,7 @@ module.exports = {
       component: SecondScene,
       title: SecondScene.name,
       exact: true,
-      path: `/${SecondScene.name}`,
+      path: `/transition/${SecondScene.name}`,
       ownProps: {
         transitionTimeout: 1
       }
@@ -87,7 +85,7 @@ module.exports = {
       component: ThirdScene,
       title: ThirdScene.name,
       exact: true,
-      path: `/${ThirdScene.name}`,
+      path: `/transition/${ThirdScene.name}`,
       ownProps: {
         transitionTimeout: 1
       }
