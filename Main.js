@@ -13,9 +13,9 @@ import GreensockAnimation from "./containers/GreensockAnimation/GreensockAnimati
 import BodymovinAnimation from "./containers/BodymovinAnimation/BodymovinAnimation"
 import ReactMotionAnimation from "./containers/ReactMotionAnimation/ReactMotionAnimation"
 import TransitionAnimation from "./containers/TransitionAnimation/TransitionAnimation"
-import SvgAnimation from "./containers/SvgAnimation/SvgAnimation"
-import PLPAnimation from "./containers/SvgAnimation/PLP/PLPAnimation"
-import Slovenia from "./containers/SvgAnimation/Slovenia/Slovenia"
+// import SvgAnimation from "./containers/SvgAnimation/SvgAnimation"
+// import PLPAnimation from "./containers/SvgAnimation/PLP/PLPAnimation"
+// import Slovenia from "./containers/SvgAnimation/Slovenia/Slovenia"
 
 
 export default class Main extends Component {
@@ -30,13 +30,11 @@ export default class Main extends Component {
     this.routes = [ParallaxEffect, GreensockAnimation, BodymovinAnimation, ReactMotionAnimation]
   }
 
-
-
 	getRoutes = () => ([
     {
       component: ParallaxEffect,
       title: ParallaxEffect.name,
-      exact: false,
+      exact: true,
       path: `/${ParallaxEffect.name}`,
       ownProps: {
         transitionTimeout: 0,
@@ -57,7 +55,7 @@ export default class Main extends Component {
     {
       component: BodymovinAnimation,
       title: BodymovinAnimation.name,
-      exact: false,
+      exact: true,
       path: `/${BodymovinAnimation.name}`,
       ownProps: {
         transitionTimeout: 0
@@ -66,8 +64,17 @@ export default class Main extends Component {
     {
       component: ReactMotionAnimation,
       title: ReactMotionAnimation.name,
-      exact: false,
+      exact: true,
       path: `/${ReactMotionAnimation.name}`,
+      ownProps: {
+        transitionTimeout: 0
+      }
+    },
+    {
+      component: TransitionAnimation,
+      title: TransitionAnimation.name,
+      exact: false,
+      path: `/${TransitionAnimation.name}`,
       ownProps: {
         transitionTimeout: 0
       }
@@ -95,7 +102,7 @@ export default class Main extends Component {
   /* NOTE: Not hooked to anything */
 	updateOnResize = () => {
 		this.setState({ width: window.innerWidth })
-	};
+	}
 
 	render() {
 		return (
@@ -103,27 +110,15 @@ export default class Main extends Component {
 				<div id={"app-container"}>
 					<Menu routes={this.getRoutes().map(({path, title}) => ({path, title}))} />
           <Route path="/" render={(props) => (
-            <TransitionGroup>
-              <Transition
-                key={props.location.key}
-                mountOnEnter={false}
-                unmountOnExit={false}
-                timeout={0}
-              >
-                {state =>
-                  <Switch location={props.location}>
-                    {this.getRoutes().map(({ component, exact, path, ownProps }, i) =>
-                      <Route exact={exact} path={path} key={i} render={ (props) => (
-                        React.createElement(component, {
-                          ... props, ... ownProps,
-                          transitionState: state
-                        })
-                      )}/>
-                    )}
-                  </Switch>
-                }
-              </Transition>
-            </TransitionGroup>
+            <Switch location={props.location}>
+              {this.getRoutes().map(({ component, exact, path, ownProps }, i) =>
+                <Route exact={exact} path={path} key={i} render={ (props) => (
+                  React.createElement(component, {
+                    ... props, ... ownProps
+                  })
+                )}/>
+              )}
+            </Switch>
           )}/>
 				</div>
 			</Router>

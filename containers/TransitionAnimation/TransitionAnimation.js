@@ -9,6 +9,12 @@ import history from 'services/history'
 import FirstScene from "./scenes/FirstScene/FirstScene"
 import SecondScene from "./scenes/SecondScene/SecondScene"
 import ThirdScene from "./scenes/ThirdScene/ThirdScene"
+import GreensockAnimation from "../GreensockAnimation/GreensockAnimation";
+import ReactMotionAnimation from "../ReactMotionAnimation/ReactMotionAnimation";
+import ParallaxEffect from "../ParallaxEffect/ParallaxEffect";
+import BodymovinAnimation from "../BodymovinAnimation/BodymovinAnimation";
+
+import Menu from "../../components/Menu/Menu"
 
 export default class TransitionAnimation extends Component {
 
@@ -19,65 +25,83 @@ export default class TransitionAnimation extends Component {
     }
   }
 
-  /* TODO: Define routes/scenes the proper way */
-  links = () => [
-    {path: "/", component: FirstScene},
-    {path: "/SecondScene", component: SecondScene},
-    {path: "/ThirdScene", component: ThirdScene}
-  ]
+  getRoutes = () => ([
+    {
+      component: FirstScene,
+      title: FirstScene.name,
+      exact: true,
+      path: `/`,
+      ownProps: {
+        transitionTimeout: 1
+      }
+    },
+    {
+      component: SecondScene,
+      title: SecondScene.name,
+      exact: true,
+      path: `/TransitionAnimation/${SecondScene.name}`,
+      ownProps: {
+        transitionTimeout: 1
+      }
+    },
+    {
+      component: ThirdScene,
+      title: ThirdScene.name,
+      exact: true,
+      path: `/TransitionAnimation/${ThirdScene.name}`,
+      ownProps: {
+        transitionTimeout: 1
+      }
+    }
+  ])
 
   render() {
+    const props = this.props;
     return (
-      <BrowserRouter>
-        <div id={`desktop-wrapper`}>
-          <section id={`nav-menu`}>
-            <span><Link to="/">First Scene</Link></span>
-            <span><Link to="/about-us">Second Scene</Link></span>
-            <span><Link to="/work">Third Scene</Link></span>
-          </section>
-          <Route path="/" render={(props) => (
-            <TransitionGroup>
-              <Transition
-                // For transitions API to work, transition key has to be set and unique!
-                key={props.location.key}
-                mountOnEnter={false}
-                unmountOnExit={false}
-                timeout={2000}
-                // I have state available in my transition components ...
-                // onEntering={el => { console.log('entering', el) }}
-                // onExit={el => { console.log('exit', el) }}
-                // ... so do I really need these? Leave for reference and global changes
-              >
-                {state =>
-                  <Switch location={props.location}>
-                    <Route exact path="/" render={(props) => (
-                      <SecondScene
-                        { ... props}
-                        transitionState={state}
-                        transitionTimeout={1.2}
-                      />
-                    )}/>
-                    <Route exact path="/second-scene" render={(props) => (
-                      <FirstScene
-                        { ... props}
-                        transitionState={state}
-                        transitionTimeout={1.2}
-                      />
-                    )}/>
-                    <Route exact  path="/third-scene" render={(props) => (
-                      <ThirdScene
-                        { ... props}
-                        transitionState={state}
-                        transitionTimeout={0.2}
-                      />
-                    )}/>
-                  </Switch>
-                }
-              </Transition>
-            </TransitionGroup>
-          )}/>
-        </div>
-      </BrowserRouter>
+      <div id={`transition-animation-wrapper`}>
+        <section id={`nav-menu`}>
+          <span><Link to="/TransitionAnimation">First Scene</Link></span>
+          <span><Link to="/TransitionAnimation/SecondScene">Second Scene</Link></span>
+          <span><Link to="/TransitionAnimation/ThirdScene">Third Scene</Link></span>
+        </section>
+          <TransitionGroup>
+            <Transition
+              key={this.props.location.key}
+              mountOnEnter={false}
+              unmountOnExit={false}
+              timeout={1.2}
+              // onEntering={el => { console.log('entering', el) }}
+              // onExit={el => { console.log('exit', el) }}
+            >
+              {state =>
+                <Switch location={this.props.location}>
+                  <Route exact path="/TransitionAnimation" render={(props) => (
+                    <FirstScene
+                      { ... props}
+                      transitionState={state}
+                      transitionTimeout={1.2}
+                    />
+                  )}/>
+                  <Route exact={true} path={`${this.props.match.path}/SecondScene`} render={(props) => (
+                    <SecondScene
+                      { ... props}
+                      transitionState={state}
+                      transitionTimeout={1.2}
+                    />
+                  )}/>
+                  {/*{this.getRoutes().map(({ component, exact, path, ownProps }, i) =>*/}
+                    {/*<Route exact={exact} path={path} key={i} render={ (props) => (*/}
+                      {/*React.createElement(component, {*/}
+                        {/*... props, ... ownProps,*/}
+                        {/*transitionState: state*/}
+                      {/*})*/}
+                    {/*)}/>*/}
+                  {/*)}*/}
+                </Switch>
+              }
+            </Transition>
+          </TransitionGroup>
+      </div>
     );
   }
 }

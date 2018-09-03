@@ -45,6 +45,9 @@ export default class FirstScene extends Component {
 	objectToArray = object => typeof object === 'object' ? Object.values(object) : {}
 
 	componentWillReceiveProps(nextProps) {
+
+    nextProps.transitionState !== this.props.transitionState ? console.log(nextProps.transitionState) : console.log('')
+
 		if (nextProps.transitionState === `entering` || nextProps.transitionState === `exiting`) {
 			this.setState({transitionState: nextProps.transitionState})
 			if (nextProps.transitionState === `exiting`) this.animateExit(this.svgAnimationElements)
@@ -52,6 +55,8 @@ export default class FirstScene extends Component {
 	}
 
 	componentDidMount() {
+		// console.log(this.props)
+
 		const svg = this.getSvgById(`plp-cubes`)
 		const P1 = svg.getElementById(`P1`)
 		const L = svg.getElementById(`L`)
@@ -82,7 +87,7 @@ export default class FirstScene extends Component {
 
 	render() {
 		return (
-			<div id={"about-us"} className={`section`} ref={this.plpCubesSvgRef}>
+			<div id={"first-scene"} className={`section`} ref={this.plpCubesSvgRef}>
 				<PlpCubes id={"plp-cubes"}/>
 			</div>
 		)

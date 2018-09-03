@@ -121,7 +121,7 @@ export default class SecondScene extends Component {
 
 	render() {
 		return (
-			<div id={"above-the-fold"} className={`section`} ref={this.solarSystemSvgRef}>
+			<div id={"second-scene"} className={`section`} ref={this.solarSystemSvgRef}>
 				<SolarSystem id={"solar-system"}/>
 			</div>
 		)
