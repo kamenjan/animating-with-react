@@ -1,7 +1,10 @@
 import React, { Component } from "react"
-import { Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter, Router, Switch, Route, Link } from 'react-router-dom'
 import {TransitionGroup, Transition} from 'react-transition-group'
+
 import history from 'services/history'
+import { transitionRoutes, decoupledRoutes } from "services/routes"
+
 import "./global.scss"
 /* I'm using lodash to throttle scroll event listener */
 import _ from 'lodash'
@@ -12,6 +15,10 @@ import ParallaxEffect from "./containers/ParallaxEffect/ParallaxEffect"
 import GreensockAnimation from "./containers/GreensockAnimation/GreensockAnimation"
 import BodymovinAnimation from "./containers/BodymovinAnimation/BodymovinAnimation"
 import ReactMotionAnimation from "./containers/ReactMotionAnimation/ReactMotionAnimation"
+
+import FirstScene from "./containers/TransitionAnimation/scenes/FirstScene/FirstScene"
+import SecondScene from "./containers/TransitionAnimation/scenes/SecondScene/SecondScene"
+
 import TransitionAnimation from "./containers/TransitionAnimation/TransitionAnimation"
 // import SvgAnimation from "./containers/SvgAnimation/SvgAnimation"
 // import PLPAnimation from "./containers/SvgAnimation/PLP/PLPAnimation"
@@ -27,9 +34,11 @@ export default class Main extends Component {
       width: window.innerWidth
     }
 
-    this.routes = [ParallaxEffect, GreensockAnimation, BodymovinAnimation, ReactMotionAnimation]
+    // this.routes = [ParallaxEffect, GreensockAnimation, BodymovinAnimation, ReactMotionAnimation]
   }
 
+  // getTransitionRoutes
+  // getDecoupledRoutes
 	getRoutes = () => ([
     {
       component: ParallaxEffect,
@@ -46,8 +55,7 @@ export default class Main extends Component {
       component: GreensockAnimation,
       title: GreensockAnimation.name,
       exact: true,
-      // path: `/${GreensockAnimation.name}`,
-      path: `/`,
+      path: `/${GreensockAnimation.name}`,
       ownProps: {
         transitionTimeout: 0
       }
@@ -66,15 +74,6 @@ export default class Main extends Component {
       title: ReactMotionAnimation.name,
       exact: true,
       path: `/${ReactMotionAnimation.name}`,
-      ownProps: {
-        transitionTimeout: 0
-      }
-    },
-    {
-      component: TransitionAnimation,
-      title: TransitionAnimation.name,
-      exact: false,
-      path: `/${TransitionAnimation.name}`,
       ownProps: {
         transitionTimeout: 0
       }
@@ -97,31 +96,68 @@ export default class Main extends Component {
 		const documentElement = document.scrollingElement || document.documentElement
 		/* NOTE: Known to cause some scrolling bugs when used with react motion */
 		this.setState({fromTop: documentElement.scrollTop})
-	};
+	}
 
   /* NOTE: Not hooked to anything */
 	updateOnResize = () => {
 		this.setState({ width: window.innerWidth })
 	}
 
+
 	render() {
 		return (
-			<Router history={history}>
+			<BrowserRouter>
 				<div id={"app-container"}>
-					<Menu routes={this.getRoutes().map(({path, title}) => ({path, title}))} />
-          <Route path="/" render={(props) => (
-            <Switch location={props.location}>
-              {this.getRoutes().map(({ component, exact, path, ownProps }, i) =>
-                <Route exact={exact} path={path} key={i} render={ (props) => (
-                  React.createElement(component, {
-                    ... props, ... ownProps
-                  })
-                )}/>
-              )}
-            </Switch>
+
+          <Menu routes={this.getRoutes().map(({path, title}) => ({path, title}))} />
+          <section id={`nav-menu`}>
+            <span><Link to="/transition/firstscene">First Scene</Link></span>
+            <span><Link to="/transition/secondscene">Second Scene</Link></span>
+            <span><Link to="/transition/thirdscene">Third Scene</Link></span>
+          </section>
+
+          <Route path="/transition" render={(props) => (
+            <TransitionGroup>
+              <Transition
+                key={props.location.key}
+                mountOnEnter={false}
+                unmountOnExit={false}
+                timeout={2000}
+                // onEntering={el => { console.log('entering', el) }}
+                // onExit={el => { console.log('exit', el) }}
+              >
+                {state =>
+                  <Switch location={props.location}>
+                    <Route exact path="/transition/firstscene" render={(props) => (
+                      <FirstScene
+                        { ... props}
+                        transitionState={state}
+                        transitionTimeout={1.2}
+                      />
+                    )}/>
+                    <Route exact path="/transition/secondscene" render={(props) => (
+                      <SecondScene
+                        { ... props}
+                        transitionState={state}
+                        transitionTimeout={1.2}
+                      />
+                    )}/>
+                  </Switch>
+                }
+              </Transition>
+            </TransitionGroup>
           )}/>
-				</div>
-			</Router>
+
+          {decoupledRoutes.map(({ component, exact, path, ownProps }, i) =>
+            <Route exact={exact} path={path} key={i} render={ (props) => (
+              React.createElement(component, {
+                ... props, ... ownProps
+              })
+            )}/>
+          )}
+
+        </div>
+			</BrowserRouter>
 		)
 	}
 }

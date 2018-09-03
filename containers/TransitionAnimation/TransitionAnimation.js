@@ -9,12 +9,6 @@ import history from 'services/history'
 import FirstScene from "./scenes/FirstScene/FirstScene"
 import SecondScene from "./scenes/SecondScene/SecondScene"
 import ThirdScene from "./scenes/ThirdScene/ThirdScene"
-import GreensockAnimation from "../GreensockAnimation/GreensockAnimation";
-import ReactMotionAnimation from "../ReactMotionAnimation/ReactMotionAnimation";
-import ParallaxEffect from "../ParallaxEffect/ParallaxEffect";
-import BodymovinAnimation from "../BodymovinAnimation/BodymovinAnimation";
-
-import Menu from "../../components/Menu/Menu"
 
 export default class TransitionAnimation extends Component {
 
@@ -30,7 +24,7 @@ export default class TransitionAnimation extends Component {
       component: FirstScene,
       title: FirstScene.name,
       exact: true,
-      path: `/`,
+      path: `/${First.name}`,
       ownProps: {
         transitionTimeout: 1
       }
@@ -39,7 +33,7 @@ export default class TransitionAnimation extends Component {
       component: SecondScene,
       title: SecondScene.name,
       exact: true,
-      path: `/TransitionAnimation/${SecondScene.name}`,
+      path: `/${SecondScene.name}`,
       ownProps: {
         transitionTimeout: 1
       }
@@ -48,7 +42,7 @@ export default class TransitionAnimation extends Component {
       component: ThirdScene,
       title: ThirdScene.name,
       exact: true,
-      path: `/TransitionAnimation/${ThirdScene.name}`,
+      path: `/${ThirdScene.name}`,
       ownProps: {
         transitionTimeout: 1
       }
@@ -69,7 +63,7 @@ export default class TransitionAnimation extends Component {
               key={this.props.location.key}
               mountOnEnter={false}
               unmountOnExit={false}
-              timeout={1.2}
+              timeout={2000}
               // onEntering={el => { console.log('entering', el) }}
               // onExit={el => { console.log('exit', el) }}
             >
@@ -89,14 +83,6 @@ export default class TransitionAnimation extends Component {
                       transitionTimeout={1.2}
                     />
                   )}/>
-                  {/*{this.getRoutes().map(({ component, exact, path, ownProps }, i) =>*/}
-                    {/*<Route exact={exact} path={path} key={i} render={ (props) => (*/}
-                      {/*React.createElement(component, {*/}
-                        {/*... props, ... ownProps,*/}
-                        {/*transitionState: state*/}
-                      {/*})*/}
-                    {/*)}/>*/}
-                  {/*)}*/}
                 </Switch>
               }
             </Transition>

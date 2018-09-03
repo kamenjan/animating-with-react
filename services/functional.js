@@ -4,4 +4,4 @@ module.exports = {
 		console.log(value)
 		return value
 	}
-};
+}

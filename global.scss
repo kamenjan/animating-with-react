@@ -2,7 +2,6 @@ html {
   body {
     margin: 0;
   }
-
   /* START: Code for hiding browser native scrollbar  */
   //overflow: scroll;
   //overflow-x: hidden;
@@ -15,13 +14,27 @@ html {
   //  background: #FF0000;
   //}
   /* END: Code for hiding browser native scrollbar  */
-
 }
 
-/* This belongs to respective container when implemented */
-.generic-container {
-  height: 9000px;
-  background-color: green;
-  position: relative;
-  z-index: 98;
+.section {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+#desktop-wrapper {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: #082a60;
+}
+
+#nav-menu {
+  position: absolute;
+  left: 0;
+  z-index: 100;
+
+  a {
+    color: black;
+  }
 }
