@@ -7,11 +7,10 @@ import PlpCubes from "./svg/plp-inkscape.svg"
 
 export default class FirstScene extends Component {
 
-	constructor(props) {
-		super(props)
-		this.state = {
-			transitionState: this.props.transitionState
-		}
+	constructor({transitionState, transitionTimeout}) {
+    super({transitionState, transitionTimeout})
+		// super(props)
+		// this.state = { transitionState: this.transitionState }
 		this.plpCubesSvgRef = React.createRef()
 		this.elementsAnimationSteps = {
 			cubes: {
@@ -47,7 +46,7 @@ export default class FirstScene extends Component {
 	componentWillReceiveProps(nextProps) {
     // nextProps.transitionState !== this.props.transitionState ? console.log(nextProps.transitionState) : console.log('')
 		if (nextProps.transitionState === `entering` || nextProps.transitionState === `exiting`) {
-			this.setState({transitionState: nextProps.transitionState})
+			// this.setState({transitionState: nextProps.transitionState})
 			if (nextProps.transitionState === `exiting`) this.animateExit(this.svgAnimationElements)
 		}
 	}
@@ -65,7 +64,7 @@ export default class FirstScene extends Component {
 	animateEnter = ({ P1, L, P2 }) => {
 		const letters = [P1, L, P2]
 		const animation = new TimelineLite()
-		animation.add(`start`, `+=${this.props.transitionTimeout}`)
+		animation.add(`start`, `+=${this.transitionTimeout}`)
 		letters.map((letter, index) => {
 			const letterAnimationData = this.elementsAnimationSteps[letter.id].initial
 			animation.from(letter, 1, { ... letterAnimationData}, `start+=${index/5}`)
@@ -74,7 +73,7 @@ export default class FirstScene extends Component {
 
 	animateExit = ({ cubes }) => {
 		const animation = new TimelineLite();
-		animation.add("start");
+		animation.add("start")
 		cubes.map((cube, index) => {
 			const cubeAnimationData = this.elementsAnimationSteps.cubes.out
 			animation.to(cube, 1, { ... cubeAnimationData}, `start+=${index/10}`)
@@ -91,6 +90,9 @@ export default class FirstScene extends Component {
 }
 
 FirstScene.propTypes = {
-    transitionState: PropTypes.string,
-    transitionTimeout: PropTypes.number
-};
+	history: PropTypes.object,
+	location: PropTypes.object,
+	match: PropTypes.object,
+	transitionState: PropTypes.string,
+	transitionTimeout: PropTypes.number
+}

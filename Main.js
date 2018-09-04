@@ -1,17 +1,22 @@
 import React, { Component } from "react"
-import { BrowserRouter, Router, Route, } from 'react-router-dom'
+import { Router, Route, } from 'react-router-dom'
 
 /* I'm using lodash to throttle scroll event listener */
 import _ from 'lodash'
 
+/* Define global history for react's router  */
 import history from 'services/history'
-import { transitionRoutes, decoupledRoutes } from "services/routes"
 
-import "./global.scss"
+/* Import all routes */
+import { transitionRoutes, decoupledRoutes } from "services/routes"
 
 import Menu from "./components/Menu/Menu"
 
-import TransitionAnimation from "./containers/TransitionAnimation/TransitionAnimation"
+/* Encapsulates transition routes in transitionGroup and router's switch */
+import TransitionAnimation
+  from "./containers/TransitionAnimation/TransitionAnimation"
+
+import "./global.scss"
 
 export default class Main extends Component {
 
@@ -19,7 +24,8 @@ export default class Main extends Component {
     super()
     this.state = {
       fromTop: 0,
-      width: window.innerWidth
+      width: window.innerWidth,
+			height: window.innerHeight
     }
   }
 
@@ -46,19 +52,17 @@ export default class Main extends Component {
 		this.setState({ width: window.innerWidth })
 	}
 
-
 	render() {
-
 	  const allRoutes = [ ... decoupledRoutes, ... transitionRoutes ]
     const addProps = (route) =>  ({
       ... route,
       ownProps: {
         ... route.ownProps,
         fromTop: this.state.fromTop,
-        width: this.state.width
+        width: this.state.width,
+        height: this.state.height
       }
     })
-
 
 		return (
 			<Router history={history}>
@@ -71,6 +75,7 @@ export default class Main extends Component {
             .map((route) => addProps(route))
             .map(({ component, exact, path, ownProps }, i) =>
               <Route exact={exact} path={path} key={i} render={ (props) => (
+                // NOTE: Find if there is a way to dynamically create components using JSX
                 React.createElement(component, {
                   ... props, ... ownProps
                 })

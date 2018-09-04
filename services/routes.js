@@ -19,6 +19,9 @@ import FirstScene
 import ThirdScene
   from "../containers/TransitionAnimation/scenes/ThirdScene/ThirdScene"
 
+import MotionGraphics
+  from "../containers/MotionGraphics/MotionGraphics"
+
 /* TODO: dynamically generate routes*/
 
 module.exports = {
@@ -57,6 +60,15 @@ module.exports = {
       title: ReactMotionAnimation.name,
       exact: true,
       path: `/${ReactMotionAnimation.name}`,
+      ownProps: {
+        transitionTimeout: 0
+      }
+    },
+    {
+      component: MotionGraphics,
+      title: MotionGraphics.name,
+      exact: true,
+      path: `/`,
       ownProps: {
         transitionTimeout: 0
       }

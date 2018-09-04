@@ -42,6 +42,5 @@ export default class TransitionAnimation extends Component {
 }
 
 TransitionAnimation.propTypes = {
-  // transitionState: PropTypes.string,
-  // transitionTimeout: PropTypes.number
+  routes: PropTypes.array
 };

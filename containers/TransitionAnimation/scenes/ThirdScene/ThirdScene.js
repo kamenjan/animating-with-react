@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 
+import { TimelineLite, TweenLite } from 'gsap'
+
+import Line from './components/Line'
+
 export default class ThirdScene extends Component {
 
 	constructor(props) {
-		super(props);
+		super(props)
 	}
 
-	/* Triggered when component loads */
 	componentDidMount() {}
 
 	componentWillUnmount() {}
@@ -14,10 +17,20 @@ export default class ThirdScene extends Component {
 	componentWillUpdate () {}
 
 	render() {
+
+    let lineCanvasStyle = {
+      width: '100%',
+      height: '100%',
+      backgroundColor: 'red'
+    }
+
+
 		return (
-			<div id={"work"} className={`section`}>
-				work
-			</div>
+      <div id={"third-scene"} className={`section`}>
+        <div id={`line-canvas`} style={{...lineCanvasStyle}}>
+          <Line/>
+        </div>
+      </div>
 		);
 	}
 }
