@@ -14,23 +14,20 @@ export default class MotionGraphics extends Component {
 
 	  const component = this.componentRef.current
     const leftShutter = component.querySelector("#left")
-
     const viewportWidth = this.props.width
 
-    console.log(leftShutter);
 
     const tanAlpha = Math.tan(30 * Math.PI/180)
     const b = this.props.height
     const shutterPadding = tanAlpha * b // Needed because skew effect indents the element
 
-    // left: `-${shutterPadding/2}px`, // far right position
-    // left: `-${viewportWidth+shutterPadding+shutterPadding/2}px`, // far left position
+    // TweenLite.set(leftShutter, { x:`-${viewportWidth+shutterPadding+shutterPadding/2}px` })
 
     const animation = new TimelineLite()
     // animation.add(`start`, `+=${0}`)
     animation
-      .to(leftShutter, 2, {left: `-${shutterPadding/2}px`}, `start`)
-      .to(leftShutter, 2, {left: `-${viewportWidth+shutterPadding+shutterPadding/2}px`})
+      .to(leftShutter, 1, {x: `-${shutterPadding/2}px`}, `start`)
+      .to(leftShutter, 1, {x: `-${viewportWidth+shutterPadding+shutterPadding/2}px`})
 
   }
 
@@ -43,16 +40,17 @@ export default class MotionGraphics extends Component {
 	render() {
 
     const tanAlpha = Math.tan(30 * Math.PI/180)
-    const b = this.props.height
-    const shutterPadding = tanAlpha * b // Needed because skew effect indents the element
+    const viewportHeight = this.props.height
+    const shutterPadding = Math.round(tanAlpha * viewportHeight) // Needed because skew effect indents the element
+    const viewportWidth = this.props.width
 
-    console.log(`b=${b}`)
+    const shutterWidth = viewportWidth+shutterPadding // Have to make it wider so it fills the screen when skewed
+    const initialX = viewportWidth+shutterPadding+shutterPadding/2 // Out of the screen to the left
+
+
+    console.log(`b=${viewportHeight}`)
     console.log(`tanAlpha=${tanAlpha}`)
     console.log(`a=${shutterPadding}`)
-
-    console.log(shutterPadding)
-
-    const viewportWidth = this.props.width
 
 	  const containerStyle = {
 	    position: 'fixed',
@@ -65,12 +63,14 @@ export default class MotionGraphics extends Component {
 	    zIndex: '100',
       display: 'inline-block',
       position: 'absolute',
-      width: `${viewportWidth+shutterPadding}px`,
+      width: `${shutterWidth}px`,
       height: '100%',
-      left: `-${viewportWidth+shutterPadding+shutterPadding/2}px`, // far left position
+      // transform: `skew(-30deg)`,
+      transform: `translateX(-${initialX}px) skew(-30deg)`,
+      // left: `-${viewportWidth+shutterPadding+shutterPadding/2}px`, // far left position
       // left: `-${shutterPadding/2}px`, // far right position
-      backgroundColor: 'rgba(108, 205, 228, 1)',
-      transform: 'skew(-30deg)'
+      // backgroundColor: 'rgba(108, 205, 228, 1)', //45cce8
+      backgroundColor: '#45cce8',
     }
 
     /* NOTE: not in use anymore, here as an example of position attribute */
