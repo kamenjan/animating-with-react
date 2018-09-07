@@ -1,91 +1,120 @@
 import React, { Component } from "react"
 
+import Lottie from 'react-lottie'
 import { TimelineLite, TweenLite } from 'gsap'
-// import "./common.scss"
+
+import * as animationData from './lottie/sheep'
+import Arrow from "./svg/arrow.svg"
 
 export default class MotionGraphics extends Component {
 
 	constructor(props) {
 		super(props)
-    this.componentRef = React.createRef()
+    this.state = { sheep: { isStopped: false } }
+    this.animation = {
+		  timeline: new TimelineLite({onComplete:function() { this.restart().pause() }}),
+      componentRef: React.createRef(),
+      viewportHeight: this.props.height,
+      viewportWidth: this.props.width,
+      shutter: {
+        widthPadding: Math.tan(30 * Math.PI/180) * this.props.height
+      }
+    }
 	}
 
   componentDidMount() {
 
-	  const component = this.componentRef.current
+    const component = this.animation.componentRef.current
+
     const leftShutter = component.querySelector("#left")
     const viewportWidth = this.props.width
 
-
     const tanAlpha = Math.tan(30 * Math.PI/180)
-    const b = this.props.height
-    const shutterPadding = tanAlpha * b // Needed because skew effect indents the element
+    const viewportHeight = this.props.height
+    const shutterPadding = tanAlpha * viewportHeight // Needed because skew effect indents the element
 
-    // TweenLite.set(leftShutter, { x:`-${viewportWidth+shutterPadding+shutterPadding/2}px` })
+    const initialX = viewportWidth+shutterPadding+shutterPadding/2 // Out of the screen to the left
 
-    const animation = new TimelineLite()
-    // animation.add(`start`, `+=${0}`)
-    animation
-      .to(leftShutter, 1, {x: `-${shutterPadding/2}px`}, `start`)
-      .to(leftShutter, 1, {x: `-${viewportWidth+shutterPadding+shutterPadding/2}px`})
-
+    this.animation.timeline
+      .pause()
+      .to(leftShutter, 1, {transform: `translateX(-${shutterPadding/2}px)`, ease: Power0.easeNone, onComplete: this.toggleSheep}, `step1`)
+      .to(leftShutter, 0.5, {transform: `translateX(-${1300}px)`, ease: Power2.easeOut, onComplete: () => { this.animation.timeline.pause();}}, '+=0.0')
+      .to(leftShutter, 0.5, {skewType:'simple', skewX: `-30deg`, ease: Power2.easeInOut, onComplete: () => { this.animation.timeline.pause();}}, 'step2')
+      .to(leftShutter, 0.5, {skewType:'simple', skewX: `0deg`, ease: Power2.easeInOut}, 'step3')
+      .to(leftShutter, 0.5, {x: `-${shutterPadding/2}px`, ease: Power2.easeInOut, onComplete: () => { this.toggleSheep();}}, '-=0.5')
+      .to(leftShutter, 1, {x: `-${initialX}px`, ease: Power2.easeOut}, '-=0')
   }
 
-  componentWillUnmount() {}
-
-  componentWillUpdate () {}
-
-  onePercentInPixles = ( hundredPercentInPixels ) => hundredPercentInPixels / 100
+  toggleNavigation = () => this.animation.timeline.play()
+  toggleSheep = () => this.setState({ sheep: { ...this.state.sheep, isStopped: !this.state.sheep.isStopped} })
 
 	render() {
-
+	  /* GSAP animations */
     const tanAlpha = Math.tan(30 * Math.PI/180)
     const viewportHeight = this.props.height
     const shutterPadding = Math.round(tanAlpha * viewportHeight) // Needed because skew effect indents the element
     const viewportWidth = this.props.width
-
     const shutterWidth = viewportWidth+shutterPadding // Have to make it wider so it fills the screen when skewed
     const initialX = viewportWidth+shutterPadding+shutterPadding/2 // Out of the screen to the left
 
+    /* Lottie animation */
+    const lottieOptions = {
+      loop: true,
+      autoplay: true,
+      animationData: animationData,
+      rendererSettings: {
+        preserveAspectRatio: 'xMidYMid slice'
+      }
+    }
 
-    console.log(`b=${viewportHeight}`)
-    console.log(`tanAlpha=${tanAlpha}`)
-    console.log(`a=${shutterPadding}`)
+    const lottieSheepStyle = {
+      display: 'inline-block',
+      position: 'absolute',
+      margin: '0',
+      right: '0'
+    }
 
+    const lottieAttrs = {
+      height: 400,
+      width: 400,
+      style: {...lottieSheepStyle},
+      isStopped: this.state.sheep.isStopped
+    }
+
+    /* Initial CSS styles */
 	  const containerStyle = {
 	    position: 'fixed',
       width: '100%',
       height: '100%',
       boxShadow: `inset -15px 5px 297px -77px rgba(0,0,0,1)`
     }
-
-	  const leftStyle = {
+	  const shutterStyle = {
 	    zIndex: '100',
       display: 'inline-block',
       position: 'absolute',
       width: `${shutterWidth}px`,
       height: '100%',
-      // transform: `skew(-30deg)`,
-      transform: `translateX(-${initialX}px) skew(-30deg)`,
-      // left: `-${viewportWidth+shutterPadding+shutterPadding/2}px`, // far left position
-      // left: `-${shutterPadding/2}px`, // far right position
-      // backgroundColor: 'rgba(108, 205, 228, 1)', //45cce8
+      transform: `translateX(-${initialX}px)`,
       backgroundColor: '#45cce8',
+      boxShadow: `20px 0 80px 20px rgba(0, 0, 0, 0.2), 0em 0 1em 0.1em rgba(0, 0, 0, 0.7)`,
+      background: `linear-gradient(135deg, rgba(255,224,252,1) 0%,rgba(133,232,252,1) 36%,rgba(181,190,255,1) 100%)`
     }
 
-    /* NOTE: not in use anymore, here as an example of position attribute */
-    const rightStyle = {
+    const navArrowStyle = {
+	    zIndex: '101',
       display: 'inline-block',
       position: 'absolute',
-      width: '100%',
-      height: '100%',
-      backgroundColor: 'blue'
+      right: '0',
+      top: '50%',
+      width: '100px',
+      height: '100px'
     }
 
 		return (
-      <div id={'motion-graphics'} style={{...containerStyle}} ref={this.componentRef}>
-        <div id={'left'} style={{...leftStyle}}></div>
-        <span>arih</span><span> > </span>
+      <div id={'motion-graphics'} style={{...containerStyle}} ref={this.animation.componentRef}>
+        <Arrow style={{...navArrowStyle}} onClick={this.toggleNavigation}/>
+        <div id={'left'} style={{...shutterStyle}}/>
+        {this.state.sheep.isStopped ? <Lottie options={lottieOptions} {...lottieAttrs}/> : null }
       </div>
 		)
 	}
