@@ -1,6 +1,28 @@
-- node-sass 4.9.0 is depending on a deprecated package called hoek 2.16.3 that has a vulnerability. hoek@5.0.3 has this solved.
-- this is an actual security issue so DO NOT use this in production!
-- see https://github.com/hapijs/hoek/issues/247 for more info
+# Animating with react
+
+Solving animation challenges in react using different approaches and libraries. 
+
+## Getting Started
+
+I use this repo to play around and test different animating libraries. It will never be finished but you are welcome to look around for ideas or fork and continue experiment yourself.
+
+### Prerequisites
+
+- [node](https://nodejs.org/en/) 8.0+ with npm
+- [serve](https://www.npmjs.com/package/serve) installed globally `$ npm install -g serve`
+    - if you use any other command-line http server just change it in `serve-prod` npm script
+
+### Installing
+`$ npm install`
+
+
+### Running
+
+Check package.json for scripts, but mainly
+- `$ npm start` for development environment with code watch + hot reloading and
+- `$ npm run build && npm run serve-prod` for static production build
+
+### Issues, notes & todos
 
 Optimizing rendering process:
 
@@ -18,7 +40,7 @@ https://stackoverflow.com/questions/37448937/keyframes-with-inline-styles-reactj
 https://github.com/styled-components/styled-components#animations
 
 TASK: Try out "styled components" plugin and report (file size, usability, documentation, support, development, ...)
-REPORT: It is light weight (16kb). It is nice for direct styling of un-nested elements. When dealing with importet SVGs inside react this process is obfuscated with react refs.  
+REPORT: It is light weight (16kb). It is nice for direct styling of un-nested elements. When dealing with imported SVGs inside react this process is obfuscated with react refs.  
 
 TASK: Try out react-motion
 REPORT:
