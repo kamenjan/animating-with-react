@@ -22,6 +22,9 @@ import ThirdScene
 import MotionGraphics
   from "../containers/MotionGraphics/MotionGraphics"
 
+import CssMotionGraphics
+  from "../containers/CssAnimation/CssMotionGraphics"
+
 /* TODO: dynamically generate routes*/
 
 module.exports = {
@@ -67,6 +70,15 @@ module.exports = {
     {
       component: MotionGraphics,
       title: MotionGraphics.name,
+      exact: true,
+      path: `/${MotionGraphics.name}`,
+      ownProps: {
+        transitionTimeout: 0
+      }
+    },
+    {
+      component: CssMotionGraphics,
+      title: CssMotionGraphics.name,
       exact: true,
       path: `/`,
       ownProps: {

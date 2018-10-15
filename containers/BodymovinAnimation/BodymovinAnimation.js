@@ -44,6 +44,7 @@ export default class BodymovinAnimation extends Component {
 			autoplay: true,
 			prerender: false,
 			renderer: "svg",
+			frameRate: "5",
 			animationData: animationData
 		};
 
@@ -54,7 +55,7 @@ export default class BodymovinAnimation extends Component {
 					height={400}
 					width={400}
 					isStopped={false}
-					ref={this.lottieRef} />
+					ref={this.lottieRef}/>
 			</div>
 		);
 	}

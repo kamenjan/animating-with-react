@@ -17,7 +17,7 @@ export default class MotionGraphics extends Component {
       viewportHeight: this.props.height,
       viewportWidth: this.props.width,
       shutter: {
-        widthPadding: Math.tan(30 * Math.PI/180) * this.props.height
+        widthPadding: Math.tan(30 * Math.PI/180) * this.props.height + this.props.width
       }
     }
 	}
@@ -25,7 +25,6 @@ export default class MotionGraphics extends Component {
   componentDidMount() {
 
     const component = this.animation.componentRef.current
-
     const leftShutter = component.querySelector("#left")
     const viewportWidth = this.props.width
 

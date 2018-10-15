@@ -12,6 +12,6 @@ const ParallaxLayer = ({name, initialPosition, viewportTopOffset, modifier, img,
 	return(
 		<div className={`${name} parallax-layer`} style={{...style}} ></div>
 	)
-};
+}
 
 export default ParallaxLayer;
